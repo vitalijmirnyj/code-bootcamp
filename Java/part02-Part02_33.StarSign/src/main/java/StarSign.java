@@ -36,7 +36,7 @@ public class StarSign {
 
     public static void printTriangle(int size) {
         for (int i = 1; i <= size; i++) {
-            printStars();
+            printStars(i);
         }
     }
 }
