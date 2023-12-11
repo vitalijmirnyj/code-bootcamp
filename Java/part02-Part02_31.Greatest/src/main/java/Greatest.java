@@ -1,8 +1,20 @@
-
 public class Greatest {
 
     public static int greatest(int number1, int number2, int number3) {
-        //write some code here
+        int greatestNumber;
+
+        if (number1 > number2) {
+            greatestNumber = number1;
+        } else {
+            greatestNumber = number2;
+        }
+
+        if (greatestNumber > number3) {
+            return greatestNumber;
+        } else {
+            greatestNumber = number3;
+            return greatestNumber;
+        }
     }
 
     public static void main(String[] args) {
