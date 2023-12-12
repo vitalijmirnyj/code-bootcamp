@@ -51,7 +51,7 @@ public class AdvancedAstrology {
     }
 
     public static void main(String[] args) {
-        christmasTree(8);
+        christmasTree(6);
     }
 }
 
