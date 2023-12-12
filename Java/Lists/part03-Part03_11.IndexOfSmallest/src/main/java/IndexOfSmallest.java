@@ -16,7 +16,7 @@ public class IndexOfSmallest {
             }
             list.add(input);
         }
-        
+
         int smallestNumber = list.get(0);
         for (int i = 1; i <= list.size() - 1; i++) {
             if (list.get(i) < smallestNumber) {
