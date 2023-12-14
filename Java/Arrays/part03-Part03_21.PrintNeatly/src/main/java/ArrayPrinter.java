@@ -7,7 +7,7 @@ public class ArrayPrinter {
     }
 
     public static void printNeatly(int[] array) {
-        
+
         for (int i = 0; i <= array.length - 2; i++) {
             System.out.print(array[i] + ", ");
         }
