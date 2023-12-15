@@ -2,10 +2,9 @@
 public class YourFirstAccount {
 
     public static void main(String[] args) {
-    Account myAccount = new Account("Vitalijus", 100);
+        Account myAccount = new Account("Vitalijus", 100);
 
-    myAccount.deposit(20);
-      String myBalance = myAccount.toString();
-        System.out.println(myBalance);
+        myAccount.deposit(20);
+        System.out.println(myAccount);
     }
 }
