@@ -12,15 +12,15 @@ public class Product {
     }
 
     public Product(String name) {
-this(name, "shelf", 1);
+        this(name, "shelf", 1);
     }
 
     public Product(String name, String location) {
-this(name, location, 1);
+        this(name, location, 1);
     }
 
     public Product(String name, int weight) {
-this(name, "shelf", weight);
+        this(name, "shelf", weight);
     }
 
     public String getName() {
