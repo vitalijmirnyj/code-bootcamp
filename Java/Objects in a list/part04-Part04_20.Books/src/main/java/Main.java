@@ -29,20 +29,18 @@ public class Main {
         System.out.println("What information will be printed?");
         String whatToPrint = scan.nextLine();
 
-        if (whatToPrint.equals("everything")) {
+        for (int i = 0; i <= arrayList.size() - 1; i++) {
 
-            for (int i = 0; i <= arrayList.size() - 1; i++) {
-                Book bookObject = arrayList.get(i);
-                System.out.println(bookObject);
-            }
+        if (whatToPrint.equals("everything")) {
+            Book bookObject = arrayList.get(i);
+            System.out.println(bookObject);
+
+        } else if (whatToPrint.equals("name")) {
+            Book bookObject = arrayList.get(i);
+            System.out.println(bookObject.getTitle());
         }
 
-        if (whatToPrint.equals("name")) {
-
-            for (int i = 0; i <= arrayList.size() - 1; i++) {
-                Book bookObject = arrayList.get(i);
-                System.out.println(bookObject.getTitle());
             }
         }
     }
-}
+
