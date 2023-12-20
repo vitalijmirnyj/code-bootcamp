@@ -30,7 +30,7 @@ public class Apartment {
 
         if (this.pricePerSquare > compared.pricePerSquare) {
             return true;
-            
+
         } else {
             return false;
         }
