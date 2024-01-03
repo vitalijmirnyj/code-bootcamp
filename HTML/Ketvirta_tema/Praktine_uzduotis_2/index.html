@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Užpildykite formą:</h1>
+    <h2>Visi laukai privalomi.</h2>
+    <form>
+      <label for="name">Vardas (iš didžiosios raidės)</label>
+      <br /><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Vardas"
+        pattern="[A-Z][a-zA-Z]*"
+        title="Name must start with an uppercase letter and can only contain letters"
+        required
+      />
+      <br />
+      <br />
+
+      <label for="number">Jūsų telefono numeris:</label>
+      <br /><br />
+      <input
+        type="tel"
+        id="number"
+        name="number"
+        placeholder="+370-xxx-xxxxx"
+        pattern="\+370\d{8}"
+        title="Phone number must start with +370 and be followed by 8 digits, making it 12 characters in total"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="email">El.pašto adresas:</label>
+      <br /><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="el.p.adresas"
+        title="You must write your email address"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="email"
+        >Jūsų mėgstamiausios internetinės svetainės adresas:</label
+      >
+      <br /><br />
+      <input
+        type="url"
+        id="url"
+        name="url"
+        placeholder="url adresas"
+        title="You must write your url to a website"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="email">Jūsų gimimo data:</label>
+      <br /><br />
+      <input
+        type="date"
+        id="date"
+        name="date"
+        title="You must write your birthdate"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="email">Jūsų amžius (18-65):</label>
+      <br /><br />
+      <input
+        type="number"
+        id="age"
+        name="age"
+        placeholder="nuo 18 iki 65 metų"
+        title="Age must be from 18 to 65"
+        min="18"
+        max="65"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="post-number">Jūsų pašto kodas:</label>
+      <br /><br />
+      <input
+        type="text"
+        id="post-number"
+        name="post-number"
+        placeholder="1234567"
+        title="Your postal code must have exactly 7 digits"
+        pattern="\d{7}"
+        maxlength="7"
+        required
+      />
+
+      <br />
+      <br />
+
+      <label for="email">Jūsų mėgstamiausia spalva:</label>
+      <br /><br />
+      <input type="color" id="favcolor" name="favcolor" value="#ff0000" />
+      <br />
+      <input type="submit" value="Pateikti" />
+    </form>
+  </body>
+</html>
