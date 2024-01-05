@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  width: 500px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ffc0cb;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:hover,
+select:hover {
+  background-color: #eee6e6;
+}
+
+input[type="submit"] {
+  background-color: #ff69b4;
+}
+
+input[type="submit"]:hover {
+  background-color: #b13171;
+}
+
+input[type="reset"] {
+  background-color: #ffc0cb;
+}
+
+input[type="reset"]:hover {
+  background-color: #de919f;
+}
+
+input#email {
+  border-color: #ff69b4;
+}
+
+input#psw {
+  border-color: #d54f92;
+}
+
+select#country {
+  border-color: #ab3972;
+  background-color: #ffffff;
+}
+
+select#country:focus {
+  background-color: white;
+}
+
+select#country:hover {
+  background-color: #eee6e6;
+}
+
+select#country:active {
+  background-color: #ffffff;
+}
+
+/* 
+* Aprašyti skirtingas formos elementų (input, select) rėmelio spalvas.
+* Įvedimo laukelių pagal įvedimo laukelio tipą: text, email, password 
+*/
+
+/* 
+* Aprašyti mygtukų Submit ir Reset fono spalvas 
+*/
+
+/* 
+* Aprašyti įvedimo laukelių, dropdown sąrašo, mygtukų stilius taip, kad
+* užvedus pelės žymeklį - pasikeistų fono spalva
+*/
