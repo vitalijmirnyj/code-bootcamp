@@ -1,0 +1,38 @@
+body {
+  background-color: rgb(66, 66, 66);
+}
+h1 {
+  text-align: center;
+  color: White;
+  letter-spacing: 10px;
+}
+
+p:nth-child(even) {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 20px;
+}
+
+p:nth-child(odd) span {
+  color: white;
+}
+
+p:nth-child(odd):hover span {
+  color: red;
+  font-size: 40px;
+}
+
+p:nth-child(odd) {
+  color: Black;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+p:nth-child(odd):hover {
+  color: white;
+}
+
+p:nth-child(even):hover {
+  color: black;
+}
