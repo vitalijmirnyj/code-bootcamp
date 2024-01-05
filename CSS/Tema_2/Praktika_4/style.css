@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+li::before {
+  content: "\2022";
+  margin-right: 10px;
+}
+
+li:nth-child(3),
+li:nth-child(4n + 3) {
+  color: orange;
+}
+
+li:nth-child(2):hover,
+li:nth-child(3n + 2):hover {
+  color: pink;
+}
