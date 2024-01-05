@@ -1,0 +1,36 @@
+body {
+  height: 100vh; /* (bandau suprast kaip sitas veikia) vertikalus aukstis, 100 reiskia procentus. reiskia body uzima visa viewport auksti */
+  margin: 0; /* panaukinam narsykles default margin */
+  display: flex; /* child elementai adjustinasi pagal konteineri */
+  justify-content: center; /* flex elementai centruojasi pagal pagrindine asi konteinerio */
+  align-items: center; /* elementu centravimas */
+}
+
+table {
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden; /* slepia elementus isejusius uz krastu */
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 50%;
+  height: 400px;
+  border-collapse: separate; /* panaikina ne apvalu borderi */
+  border-spacing: 0; /* nera tarpu tarp cells */
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+thead {
+  background-color: #2a364f;
+  color: white;
+}
+
+table tbody tr:hover {
+  background-color: rgb(238, 238, 239);
+}
