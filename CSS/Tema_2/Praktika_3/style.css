@@ -34,3 +34,7 @@ thead {
 table tbody tr:hover {
   background-color: rgb(238, 238, 239);
 }
+
+tr:nth-child(even) {
+  background-color: #eef4f8;
+}
