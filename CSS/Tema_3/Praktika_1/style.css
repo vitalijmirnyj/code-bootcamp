@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-div {
+  width: 600px;
+  height: 600px;
+  background-color: #8b0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-section {
+  width: 50%;
+  height: 70%;
+  border: 4px double #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 50px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 8px;
+}
+
+p {
+  color: white;
+}
+
+.small {
+  font-size: 30px;
+}
