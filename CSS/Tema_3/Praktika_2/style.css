@@ -38,6 +38,7 @@ body {
 
 .my-second-div p:first-child {
   font-style: italic;
+  font-family: "Lobster", cursive;
 }
 
 .bold-text {
