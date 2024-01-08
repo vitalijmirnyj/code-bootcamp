@@ -1,0 +1,45 @@
+body {
+  background-color: #00d6dc;
+}
+
+.my-div {
+  background-color: white;
+  height: 760px;
+  width: 300px;
+  margin: auto;
+  padding: 10px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.6);
+}
+
+.header {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px bold;
+  font-weight: bold;
+  letter-spacing: 4px;
+  width: auto;
+  margin: 10px;
+  border: 1px solid rgb(208, 208, 208);
+  padding: 10px;
+}
+
+.image {
+  width: auto;
+  margin: 10px;
+  border: 1px solid rgb(205, 205, 205);
+}
+
+.my-second-div {
+  letter-spacing: 2px;
+  width: auto;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid rgb(205, 205, 205);
+}
+
+.my-second-div p:first-child {
+  font-style: italic;
+}
+
+.bold-text {
+  font-weight: bold;
+}
