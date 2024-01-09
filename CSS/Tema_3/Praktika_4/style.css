@@ -1,0 +1,109 @@
+body {
+  align-items: center;
+  text-align: center;
+}
+
+.sumustekas {
+  width: 500px;
+  margin: auto;
+  font-size: 0;
+  letter-spacing: 5px;
+}
+
+.bandele-top {
+  width: 400px;
+  height: 85px;
+  background-color: #e5b05a;
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom: 10px solid #ce9e51;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.suris-1 {
+  margin: auto;
+  width: 440px;
+  height: 18px;
+  background-color: #f2c120;
+  border-bottom: 2px solid #dbae1d;
+  box-sizing: border-box;
+}
+
+.pomidoras {
+  margin: auto;
+  width: 360px;
+  height: 36px;
+  background-color: #dd3710;
+  border-bottom: 2px solid #c7310e;
+  box-sizing: border-box;
+}
+
+.svogunas {
+  margin: auto;
+  width: 320px;
+  height: 26px;
+  background-color: #a039bf;
+}
+
+.mesa {
+  width: 120px;
+  height: 80px;
+  background-color: #74380d;
+  border-radius: 50%;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.agurkelis {
+  width: 400px;
+  height: 45px;
+  background-color: #3ac67d;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom: 10px solid #2d9961;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.mesos-paplotelis {
+  margin: auto;
+  width: 440px;
+  height: 45px;
+  background-color: #ad370b;
+  border-bottom: 2px solid #9d310a;
+  box-sizing: border-box;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bandele-bottom {
+  margin: auto;
+  width: 380px;
+  height: 65px;
+  background-color: #e5b05a;
+  border-top: 10px solid #ce9e51;
+  box-sizing: border-box;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 200px;
+  border-bottom-left-radius: 200px;
+}
+
+.lekste {
+  margin: auto;
+  width: 580px;
+  height: 30px;
+  background-color: #656565;
+  box-sizing: border-box;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 200px;
+  border-bottom-left-radius: 200px;
+  margin-left: -40px;
+}
