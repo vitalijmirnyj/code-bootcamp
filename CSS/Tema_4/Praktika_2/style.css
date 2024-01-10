@@ -75,22 +75,6 @@ body {
   border: 2px solid #eb5650;
 }
 
-.btn--gradient-blue {
-  background-image: url("transparent-white.png");
-}
-
-.btn--gradient-green {
-  background-image: url("transparent-white.png");
-}
-
-.btn--gradient-light-blue {
-  background-image: url("transparent-white.png");
-}
-
-.btn--gradient-orange {
-  background-image: url("transparent-white.png");
-}
-
-.btn--gradient-red {
+.btn--gradient {
   background-image: url("transparent-white.png");
 }
