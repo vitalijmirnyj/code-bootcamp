@@ -2,7 +2,26 @@ div {
   width: 100px;
   height: 500px;
   border: 1px solid black;
-  display: inline-block;
+
   padding: 10px;
-  margin: 10px;
+}
+
+.div-1 {
+  position: absolute;
+  left: 150px;
+}
+
+.div-2 {
+  position: absolute;
+  left: 300px;
+}
+
+.div-3 {
+  position: absolute;
+  left: 450px;
+}
+
+.div-4 {
+  position: absolute;
+  left: 600px;
 }
