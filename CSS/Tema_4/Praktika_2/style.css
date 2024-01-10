@@ -1,0 +1,96 @@
+body {
+  background-color: #ffffcd;
+}
+
+.btn {
+  width: 100px;
+  padding: 15px;
+  border: none;
+  margin-bottom: 20px;
+  margin-right: 10;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.btn--primary {
+  background-color: #2198d2;
+}
+
+.btn--success {
+  background-color: #28c065;
+}
+
+.btn--info {
+  background-color: #44cde9;
+}
+
+.btn--warning {
+  background-color: #eb9308;
+}
+
+.btn--danger {
+  background-color: #eb5650;
+}
+
+.btn--rounded {
+  border-radius: 5px;
+}
+
+.btn--rounded-max {
+  border-radius: 50px;
+}
+
+.btn--bottom-border {
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn--smaller {
+  width: 80px;
+}
+
+.btn--just-border {
+  background-clip: text;
+  color: transparent;
+}
+
+.btn--border-color-blue {
+  border: 2px solid #2198d2;
+}
+
+.btn--border-color-green {
+  border: 2px solid #28c065;
+}
+
+.btn--border-color-light-blue {
+  border: 2px solid #44cde9;
+}
+
+.btn--border-color-orange {
+  border: 2px solid #eb9308;
+}
+
+.btn--border-color-red {
+  border: 2px solid #eb5650;
+}
+
+.btn--gradient-blue {
+  background-image: url("transparent-white.png");
+}
+
+.btn--gradient-green {
+  background-image: url("transparent-white.png");
+}
+
+.btn--gradient-light-blue {
+  background-image: url("transparent-white.png");
+}
+
+.btn--gradient-orange {
+  background-image: url("transparent-white.png");
+}
+
+.btn--gradient-red {
+  background-image: url("transparent-white.png");
+}
