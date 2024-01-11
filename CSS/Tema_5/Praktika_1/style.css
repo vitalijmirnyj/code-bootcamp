@@ -1,0 +1,41 @@
+body {
+  background-color: #cccccc;
+}
+
+.box {
+  width: 400px;
+  background-color: #333333;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.container {
+  background-color: #707070;
+  width: 1320px;
+  height: 330px;
+}
+
+.box-1 {
+  float: right;
+}
+
+.box-2 {
+  float: right;
+}
+
+.box-3 {
+  float: right;
+}
+
+.box-4 {
+  float: right;
+}
+
+.box-5 {
+  float: right;
+}
+
+.box-6 {
+  float: right;
+}
