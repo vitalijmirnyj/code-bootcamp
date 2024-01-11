@@ -1,0 +1,26 @@
+body {
+  background-color: #faf1ec;
+}
+
+div {
+  margin: 10px;
+  letter-spacing: 5px;
+  text-align: center;
+  width: 300px;
+  display: inline-block;
+  background-color: white;
+}
+
+.container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.button {
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #c1c1c1;
+  padding: 10px;
+  width: 80%;
+}
