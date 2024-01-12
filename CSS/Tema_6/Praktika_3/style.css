@@ -1,0 +1,40 @@
+body {
+  background-color: #cccccc;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-1 {
+  width: 800px;
+}
+
+.container-2 {
+  flex: 1;
+}
+
+.container-1__img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container-1__text {
+  letter-spacing: 5px;
+  font-size: 20px;
+}
+
+.container-small {
+  flex: 1;
+  overflow: hidden;
+}
+
+.container-small__image {
+  float: left;
+  width: 300px;
+  margin: 10px;
+}
+
+.container-small__text {
+  letter-spacing: 5px;
+  font-size: 20px;
+}
