@@ -26,12 +26,6 @@ main {
   letter-spacing: 4px;
 }
 
-.card--text__big {
-  font-weight: bold;
-  font-size: 30px;
-  text-align: center;
-}
-
 .card__button {
   padding: 10px;
   text-align: center;
