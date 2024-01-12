@@ -27,6 +27,8 @@ main {
 }
 
 .card--text__big {
+  font-weight: bold;
+  font-size: 30px;
   text-align: center;
 }
 
