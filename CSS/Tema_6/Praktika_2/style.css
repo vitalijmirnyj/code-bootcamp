@@ -2,25 +2,40 @@ body {
   background-color: #faf1ec;
 }
 
-div {
-  margin: 10px;
-  letter-spacing: 5px;
-  text-align: center;
-  width: 300px;
-  display: inline-block;
-  background-color: white;
+main {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
 }
 
-.container img {
-  max-width: 100%;
+.card {
+  text-align: center;
+  width: 400px;
+  height: auto;
+  background-color: white;
+  margin: 10px;
+}
+
+.card__img {
+  width: 400px;
   height: auto;
 }
 
-.button {
-  background-color: white;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 2px solid #c1c1c1;
+.card__text {
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+.card--text__big {
+  text-align: center;
+}
+
+.card__button {
   padding: 10px;
+  text-align: center;
+  background-color: white;
+  color: rgb(172, 172, 172);
+  border: solid #bbbbbb;
   width: 80%;
+  margin: 20px;
 }
