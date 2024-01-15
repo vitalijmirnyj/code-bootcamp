@@ -1,0 +1,31 @@
+.container {
+  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.container div {
+  background-color: #f0a0a0;
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+.D {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.E {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.F {
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+}
