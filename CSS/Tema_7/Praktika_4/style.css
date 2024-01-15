@@ -66,3 +66,18 @@
   height: 36px;
   background-color: #415b76;
 }
+
+@media (max-width: 500px) {
+  .container {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "header"
+      "aside-1"
+      "article-1"
+      "aside-2"
+      "article-2"
+      "footer";
+  }
+}
