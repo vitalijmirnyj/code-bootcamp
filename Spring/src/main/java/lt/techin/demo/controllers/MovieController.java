@@ -16,12 +16,12 @@ public class MovieController {
     private ArrayList<Movie> movies = new ArrayList<>(List.of(new Movie(1L, "Toy Story", "John Lasseter", (short) 1995, (short) 81), new Movie(2L, "A bug's Life", "John Lasseter", (short) 1998, (short) 81)));
 
     @GetMapping("/movies")
-    public ArrayList<String> getMovies() {
+    public ArrayList<Movie> getMovies() {
         return this.movies;
     }
 
     @GetMapping("/movies/{index}")
-    public String getMovie(@PathVariable int index) {
+    public Movie getMovie(@PathVariable int index) {
         return this.movies.get(index);
     }
 }
