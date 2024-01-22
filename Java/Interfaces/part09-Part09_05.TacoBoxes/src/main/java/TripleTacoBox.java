@@ -15,8 +15,6 @@ public class TripleTacoBox implements TacoBox {
     public void eat() {
         if (tacos > 0) {
             tacos = tacos - 1;
-        } else {
-            tacos = 0;
         }
     }
 }
