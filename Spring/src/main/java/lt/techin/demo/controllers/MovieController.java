@@ -1,5 +1,6 @@
 package lt.techin.demo.controllers;
 
+import lt.techin.demo.models.Actors;
 import lt.techin.demo.models.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,3 +26,4 @@ public class MovieController {
         return this.movies.get(index);
     }
 }
+
