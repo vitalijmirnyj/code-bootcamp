@@ -2,8 +2,11 @@ package lt.techin.demo.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+
+@Table(name = "Movies")
 public class Movie {
     @Id
     private long id;
@@ -18,6 +21,10 @@ public class Movie {
         Director = director;
         this.yearRelease = yearRelease;
         this.lengthMinutes = lengthMinutes;
+    }
+
+    public Movie() {
+
     }
 
     public long getId() {
