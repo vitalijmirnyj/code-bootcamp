@@ -31,7 +31,7 @@ public class MovieController {
 
     @GetMapping("/movies/{index}")
     public Movie getMovie(@PathVariable int index) {
-        return this.movieR.get(index);
+        return null;
     }
 }
 
