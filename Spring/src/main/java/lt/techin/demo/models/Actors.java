@@ -1,6 +1,13 @@
 package lt.techin.demo.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Actors")
 public class Actors {
+    @Id
     private long id;
     private String gender;
     private short age;
@@ -16,6 +23,10 @@ public class Actors {
         this.nationality = nationality;
         this.name = name;
         this.surname = surname;
+    }
+
+    public Actors() {
+
     }
 
     public long getId() {
