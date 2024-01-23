@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Actors")
-public class Actors {
+public class Actor {
     @Id
     private long id;
     private String gender;
@@ -16,7 +16,7 @@ public class Actors {
 
     private String surname;
 
-    public Actors(long id, String gender, short age, String nationality, String name, String surname) {
+    public Actor(long id, String gender, short age, String nationality, String name, String surname) {
         this.id = id;
         this.gender = gender;
         this.age = age;
@@ -25,7 +25,7 @@ public class Actors {
         this.surname = surname;
     }
 
-    public Actors() {
+    public Actor() {
 
     }
 
