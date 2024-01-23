@@ -2,6 +2,8 @@ package lt.techin.demo.controllers;
 
 import lt.techin.demo.models.Actors;
 import lt.techin.demo.models.Movie;
+import lt.techin.demo.repositories.MovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +16,22 @@ import java.util.List;
 @RestController
 public class MovieController {
 
-    private ArrayList<Movie> movies = new ArrayList<>(List.of(new Movie(1L, "Toy Story", "John Lasseter", (short) 1995, (short) 81), new Movie(2L, "A bug's Life", "John Lasseter", (short) 1998, (short) 81)));
+    private final MovieRepository movieRepository;
+
+    @Autowired
+    public MovieController(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
+
 
     @GetMapping("/movies")
-    public ArrayList<Movie> getMovies() {
-        return this.movies;
+    public List<Movie> getMovies() {
+        return this.movieRepository.findAll();
     }
 
     @GetMapping("/movies/{index}")
     public Movie getMovie(@PathVariable int index) {
-        return this.movies.get(index);
+        return this.movieR.get(index);
     }
 }
 
