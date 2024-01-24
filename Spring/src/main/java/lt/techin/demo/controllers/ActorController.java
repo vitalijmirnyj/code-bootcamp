@@ -49,4 +49,9 @@ public class ActorController {
         }
         return this.actorRepository.save(actor);
     }
+
+    @DeleteMapping("/actors/{id}")
+    public void deleteActor(@PathVariable long id) {
+        this.actorRepository.deleteById(id);
+    }
 }
