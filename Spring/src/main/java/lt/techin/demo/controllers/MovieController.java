@@ -50,5 +50,10 @@ public class MovieController {
 
         return this.movieRepository.save(movie);
     }
+
+    @DeleteMapping("/movies/{id}")
+    public void deleteMovie(@PathVariable long id) {
+        this.movieRepository.deleteById(id);
+    }
 }
 
