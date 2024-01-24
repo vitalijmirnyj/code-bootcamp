@@ -37,13 +37,16 @@ public class ActorController {
     }
 
     @PutMapping("/actors/{id}")
-    public void updateActor(@RequestBody Actor actor, @PathVariable long id) {
-        Actor actorFromDb = this.actorRepository.findById(id).orElseThrow();
-        actorFromDb.setGender(actor.getGender());
-        actorFromDb.setAge(actor.getAge());
-        actorFromDb.setNationality(actor.getNationality());
-        actorFromDb.setName(actor.getName());
-        actorFromDb.setSurname(actor.getSurname());
-        this.actorRepository.save(actorFromDb);
+    public Actor updateActor(@RequestBody Actor actor, @PathVariable long id) {
+        if (this.actorRepository.existsById(id)) {
+            Actor actorFromDb = this.actorRepository.findById(id).orElseThrow();
+            actorFromDb.setGender(actor.getGender());
+            actorFromDb.setAge(actor.getAge());
+            actorFromDb.setNationality(actor.getNationality());
+            actorFromDb.setName(actor.getName());
+            actorFromDb.setSurname(actor.getSurname());
+            return this.actorRepository.save(actorFromDb);
+        }
+        return this.actorRepository.save(actor);
     }
 }
