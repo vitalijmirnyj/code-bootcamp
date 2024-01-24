@@ -51,5 +51,25 @@ public class Actor {
     public String getSurname() {
         return surname;
     }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(short age) {
+        this.age = age;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 }
 
