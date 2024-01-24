@@ -38,13 +38,17 @@ public class MovieController {
     }
 
     @PutMapping("/movies/{id}")
-    public void updateMovie(@RequestBody Movie movie, @PathVariable long id) {
-        Movie movieFromDb = this.movieRepository.findById(id).orElseThrow();
-        movieFromDb.setTitle(movie.getTitle());
-        movieFromDb.setDirector(movie.getDirector());
-        movieFromDb.setYearRelease(movie.getYearRelease());
-        movieFromDb.setLengthMinutes(movie.getLengthMinutes());
-        this.movieRepository.save(movieFromDb);
+    public Movie updateMovie(@RequestBody Movie movie, @PathVariable long id) {
+        if (this.movieRepository.existsById(id)) {
+            Movie movieFromDb = this.movieRepository.findById(id).orElseThrow();
+            movieFromDb.setTitle(movie.getTitle());
+            movieFromDb.setDirector(movie.getDirector());
+            movieFromDb.setYearRelease(movie.getYearRelease());
+            movieFromDb.setLengthMinutes(movie.getLengthMinutes());
+            return this.movieRepository.save(movieFromDb);
+        }
+
+        return this.movieRepository.save(movie);
     }
 }
 
