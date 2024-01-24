@@ -10,14 +10,14 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
-    private String Director;
+    private String director;
     private short yearRelease;
     private short lengthMinutes;
 
     public Movie(long id, String title, String director, short yearRelease, short lengthMinutes) {
         this.id = id;
         this.title = title;
-        Director = director;
+        this.director = director;
         this.yearRelease = yearRelease;
         this.lengthMinutes = lengthMinutes;
     }
@@ -35,7 +35,7 @@ public class Movie {
     }
 
     public String getDirector() {
-        return Director;
+        return director;
     }
 
     public short getYearRelease() {
@@ -44,5 +44,21 @@ public class Movie {
 
     public short getLengthMinutes() {
         return lengthMinutes;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setYearRelease(short yearRelease) {
+        this.yearRelease = yearRelease;
+    }
+
+    public void setLengthMinutes(short lengthMinutes) {
+        this.lengthMinutes = lengthMinutes;
     }
 }

@@ -36,5 +36,15 @@ public class MovieController {
     public void insertMovie(@RequestBody Movie movie) {
         this.movieRepository.save(movie);
     }
+
+    @PutMapping("/movies/{id}")
+    public void updateMovie(@RequestBody Movie movie, @PathVariable long id) {
+        Movie movieFromDb = this.movieRepository.findById(id).orElseThrow();
+        movieFromDb.setTitle(movie.getTitle());
+        movieFromDb.setDirector(movie.getDirector());
+        movieFromDb.setYearRelease(movie.getYearRelease());
+        movieFromDb.setLengthMinutes(movie.getLengthMinutes());
+        this.movieRepository.save(movieFromDb);
+    }
 }
 

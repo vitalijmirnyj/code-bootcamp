@@ -1,13 +1,12 @@
 package lt.techin.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Actors")
 public class Actor {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String gender;
     private short age;
