@@ -24,32 +24,34 @@ public class ReviewController {
 
 
     @GetMapping("/reviews")
-    public List<Review> getMovies() {
+    public List<Review> getReview() {
         return this.reviewRepository.findAll();
     }
 
-    @GetMapping("/review/{id}")
+    @GetMapping("/reviews/{id}")
     public Review getReview(@PathVariable long id) {
         return this.reviewRepository.findById(id).orElseThrow();
     }
 
     @PostMapping("/reviews")
-    public void insertReview(@RequestBody Review review) {
-        this.reviewRepository.save(review);
+    public Review insertReview(@RequestBody Review review) {
+        return this.reviewRepository.save(review);
     }
 
-    @PutMapping("/review/{id}")
+    @PutMapping("/reviews/{id}")
     public Review updateReview(@RequestBody Review review, @PathVariable long id) {
         if (this.reviewRepository.existsById(id)) {
             Review reviewFromDb = this.reviewRepository.findById(id).orElseThrow();
+            reviewFromDb.setMovieId(review.getMovie());
             reviewFromDb.setWebsite(review.getWebsite());
             reviewFromDb.setUserName(review.getUserName());
             reviewFromDb.setRatingScore(review.getRatingScore());
 
             return this.reviewRepository.save(reviewFromDb);
-        }
+        } else {
 
-        return this.reviewRepository.save(review);
+            return this.reviewRepository.save(review);
+        }
     }
 
     @DeleteMapping("/reviews/{id}")

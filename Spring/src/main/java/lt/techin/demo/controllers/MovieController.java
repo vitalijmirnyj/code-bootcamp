@@ -33,8 +33,8 @@ public class MovieController {
     }
 
     @PostMapping("/movies")
-    public void insertMovie(@RequestBody Movie movie) {
-        this.movieRepository.save(movie);
+    public Movie insertMovie(@RequestBody Movie movie) {
+        return this.movieRepository.save(movie);
     }
 
     @PutMapping("/movies/{id}")

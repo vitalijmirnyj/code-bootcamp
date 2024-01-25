@@ -10,15 +10,15 @@ public class Review {
     private long id;
     @ManyToOne
     @JoinColumn(name = "Movie_id")
-    private Movie movieId;
+    private Movie movie;
     private String website;
     private String userName;
     private double ratingScore;
 
 
-    public Review(long id, Movie movieId, String website, String userName, double ratingScore) {
-        this.id = id;
-        this.movieId = movieId;
+    public Review(Movie movie, String website, String userName, double ratingScore) {
+
+        this.movie = movie;
         this.website = website;
         this.userName = userName;
         this.ratingScore = ratingScore;
@@ -33,8 +33,8 @@ public class Review {
         return id;
     }
 
-    public Movie getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
     public String getWebsite() {
@@ -49,8 +49,8 @@ public class Review {
         return ratingScore;
     }
 
-    public void setMovieId(Movie movieId) {
-        this.movieId = movieId;
+    public void setMovieId(Movie movie) {
+        this.movie = movie;
     }
 
     public void setWebsite(String website) {
