@@ -1,4 +1,7 @@
 package lt.techin.demo.repositories;
 
-public interface BoxOfficeRepository {
+import lt.techin.demo.models.BoxOffice;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BoxOfficeRepository extends JpaRepository<BoxOffice, Long> {
 }
