@@ -4,19 +4,18 @@ import jakarta.transaction.Transactional;
 import lt.techin.demo.Services.MovieService;
 import lt.techin.demo.models.Movie;
 import lt.techin.demo.repositories.MovieRepository;
-import org.assertj.core.api.BDDAssertions;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
-import org.assertj.core.api.BDDAssumptions;
+
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.assertj.core.api.BDDAssertions.catchThrowable;
 import static org.assertj.core.api.BDDAssertions.then;
 
-import java.util.List;
+
 import java.util.NoSuchElementException;
 
 
