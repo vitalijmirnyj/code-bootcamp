@@ -59,4 +59,11 @@ public class MovieServiceTest {
         boolean existsMovie = this.movieService.existsById(savedMovie.getId());
         then(existsMovie).isTrue();
     }
+
+    @Test
+    void deleteMovieById_delete_cannotFind() {
+        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        this.movieService.deleteMovieById(savedMovie.getId());
+        then(this.movieRepository.existsById(savedMovie.getId())).isFalse();
+    }
 }
