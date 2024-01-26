@@ -43,4 +43,13 @@ public class MovieServiceTest {
         then(throwable).isInstanceOf(NoSuchElementException.class);
     }
 
+    @Test
+    void saveMovie() {
+
+        Movie savedMovie = this.movieService.saveMovie(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+
+        Movie foundMovie = this.movieRepository.findById(savedMovie.getId()).orElse(null);
+        then(savedMovie).isEqualTo(foundMovie);
+
+    }
 }
