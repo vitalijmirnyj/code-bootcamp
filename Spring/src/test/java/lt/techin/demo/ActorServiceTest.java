@@ -27,8 +27,11 @@ public class ActorServiceTest {
     @Test
     void findAllActors_saveActors_returned() {
         Actor savedActor = this.actorRepository.save(new Actor(1, "Male", (short) 55, "USA", "Tom", "Cruise"));
+        Actor savedActor2 = this.actorRepository.save(new Actor(1, "Male", (short) 60, "USA", "Tom", "Hanks"));
         Actor foundActor = this.actorService.findActorById(savedActor.getId());
         then(foundActor).isEqualTo(savedActor);
+        Actor foundActor2 = this.actorService.findActorById(savedActor2.getId());
+        then(foundActor2).isEqualTo(savedActor2);
     }
 
     @Test
