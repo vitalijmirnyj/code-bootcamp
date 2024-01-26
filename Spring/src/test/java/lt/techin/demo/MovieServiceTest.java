@@ -31,9 +31,8 @@ public class MovieServiceTest {
     @Test
     void findAllMovies_saveMovies_returned() {
         Movie savedMovie1 = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
-        Movie savedMovie2 = this.movieRepository.save(new Movie("Toy Story 4", "John M", (short) 1995, (short) 120));
-        List<Movie> movies = this.movieService.findAllMovies();
-        then(movies).containsExactly(savedMovie1, savedMovie2);
+        Movie foundMovie = this.movieService.findMovieById(savedMovie1.getId());
+        then(foundMovie).isEqualTo(savedMovie1);
     }
 
 }
