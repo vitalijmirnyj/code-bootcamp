@@ -52,4 +52,11 @@ public class MovieServiceTest {
         then(savedMovie).isEqualTo(foundMovie);
 
     }
+
+    @Test
+    void existsMovieById_CheckIfExists_ReturnTrue() {
+        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        boolean existsMovie = this.movieService.existsById(savedMovie.getId());
+        then(existsMovie).isTrue();
+    }
 }
