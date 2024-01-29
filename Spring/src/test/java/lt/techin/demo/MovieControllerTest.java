@@ -140,4 +140,11 @@ public class MovieControllerTest {
         verify(this.movieService).deleteMovieById(1L);
     }
 
+    @Test
+    void getMovie_checkIfMovieRetrieved() throws Exception {
+        long movieId = 1L;
+        mockMvc.perform(get("/movies/{id}", movieId))
+                .andExpect(status().isOk());
+        verify(this.movieService).findMovieById(movieId);
+    }
 }
