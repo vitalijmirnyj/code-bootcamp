@@ -59,5 +59,25 @@ public class ActorControllerTest {
 
         verify(this.actorService).findAllActors();
     }
+
+    @Test
+    void insertActor_whenSaveActor_thenReturnIt() throws Exception {
+        Actor actor = new Actor(1, "Male", (short) 50, "USA", "David", "Duchovni");
+        given(this.actorService.saveActor(any(Actor.class))).willReturn(actor);
+
+        mockMvc.perform(post("/actors")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(actor)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.gender").value("Male"))
+                .andExpect(jsonPath("$.age").value(50))
+                .andExpect(jsonPath("$.nationality").value("USA"))
+                .andExpect(jsonPath("$.name").value("David"))
+                .andExpect(jsonPath("$.surname").value("Duchovni"));
+
+
+        verify(this.actorService).saveActor(any(Actor.class));
+    }
 }
 
