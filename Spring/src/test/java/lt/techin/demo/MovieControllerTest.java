@@ -131,4 +131,13 @@ public class MovieControllerTest {
                 .equals("New Movie")));
 
     }
+
+    @Test
+    void deleteMovie_checkIfMovieDeleted() throws Exception {
+        long movieIdToDelete = 1L;
+        mockMvc.perform(delete("/movies/{id}", movieIdToDelete))
+                .andExpect(status().isOk());
+        verify(this.movieService).deleteMovieById(1L);
+    }
+
 }
