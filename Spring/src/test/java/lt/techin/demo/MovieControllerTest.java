@@ -143,8 +143,16 @@ public class MovieControllerTest {
     @Test
     void getMovie_checkIfMovieRetrieved() throws Exception {
         long movieId = 1L;
+        Movie expectedMovie = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+
+        given(movieService.findMovieById(movieId)).willReturn(expectedMovie);
         mockMvc.perform(get("/movies/{id}", movieId))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Terminator 2"))
+                .andExpect(jsonPath("$.director").value("James Cameron"))
+                .andExpect(jsonPath("$.yearRelease").value(1991))
+                .andExpect(jsonPath("$.lengthMinutes").value(144));
+
         verify(this.movieService).findMovieById(movieId);
     }
 }
