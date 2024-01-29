@@ -19,9 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -104,5 +102,33 @@ public class MovieControllerTest {
             assertThat(m.getLengthMinutes()).isEqualTo((short) 120);
             return true;
         }));
+    }
+
+    @Test
+    void updatedMovie_whenNoMovieFound_addNewOne() throws Exception {
+        //given
+        Movie newMovie = new Movie("New Movie", "Director C", (short) 2000, (short) 120);
+
+        given(this.movieService.existsById(anyLong())).willReturn(false);
+        given(this.movieService.saveMovie(any(Movie.class))).willReturn(newMovie);
+
+        //when
+        mockMvc.perform(put("/movies/{id}", 58)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(newMovie))
+                        .accept(MediaType.APPLICATION_JSON))
+
+                //then
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("New Movie"))
+                .andExpect(jsonPath("$.director").value("Director C"))
+                .andExpect(jsonPath("$.yearRelease").value(2000))
+                .andExpect(jsonPath("$.lengthMinutes").value(120));
+
+        verify(this.movieService).existsById(58L);
+        verify(this.movieService, never()).findMovieById(anyLong());
+        verify(this.movieService).saveMovie(argThat(persistedMovie -> persistedMovie.getTitle()
+                .equals("New Movie")));
+
     }
 }
