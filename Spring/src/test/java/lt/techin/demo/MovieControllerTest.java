@@ -74,16 +74,18 @@ public class MovieControllerTest {
 
     @Test
     void updateMovie_whenUpdateFields_thenReturn() throws Exception {
+        //given
         Movie existingMovie = new Movie("Existing Movie", "Director A", (short) 2000, (short) 144);
         Movie updatedMovie = new Movie("Updated Movie", "Director B", (short) 1994, (short) 120);
         given(this.movieService.existsById(anyLong())).willReturn(true);
         given(this.movieService.findMovieById(anyLong())).willReturn(existingMovie);
         given(this.movieService.saveMovie(any(Movie.class))).willReturn(updatedMovie);
-
+//when
         mockMvc.perform(put("/movies/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(updatedMovie))
-                        .accept(MediaType.APPLICATION_JSON)) // Removed an extra closing parenthesis here
+                        .accept(MediaType.APPLICATION_JSON))
+                //then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Updated Movie"))
                 .andExpect(jsonPath("$.director").value("Director B"))
