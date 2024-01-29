@@ -1,5 +1,7 @@
 package lt.techin.demo;
 
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 
@@ -77,6 +79,7 @@ public class MovieControllerTest {
         //given
         Movie existingMovie = new Movie("Existing Movie", "Director A", (short) 2000, (short) 144);
         Movie updatedMovie = new Movie("Updated Movie", "Director B", (short) 1994, (short) 120);
+
         given(this.movieService.existsById(anyLong())).willReturn(true);
         given(this.movieService.findMovieById(anyLong())).willReturn(existingMovie);
         given(this.movieService.saveMovie(any(Movie.class))).willReturn(updatedMovie);
@@ -94,6 +97,12 @@ public class MovieControllerTest {
 
         verify(this.movieService).existsById(1L);
         verify(this.movieService).findMovieById(1L);
-        verify(this.movieService).saveMovie(argThat(movie -> movie.getTitle().equals("Updated Movie")));
+        verify(this.movieService).saveMovie(argThat(m -> {
+            assertThat(m.getTitle()).isEqualTo("Updated Movie");
+            assertThat(m.getDirector()).isEqualTo("Director B");
+            assertThat(m.getYearRelease()).isEqualTo((short) 1994);
+            assertThat(m.getLengthMinutes()).isEqualTo((short) 120);
+            return true;
+        }));
     }
 }
