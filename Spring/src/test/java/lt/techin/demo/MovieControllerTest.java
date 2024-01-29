@@ -1,6 +1,6 @@
 package lt.techin.demo;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 
 
@@ -17,12 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -72,5 +70,28 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$.lengthMinutes").value(110));
 
         verify(this.movieService).saveMovie(any(Movie.class));
+    }
+
+    @Test
+    void updateMovie_whenUpdateFields_thenReturn() throws Exception {
+        Movie existingMovie = new Movie("Existing Movie", "Director A", (short) 2000, (short) 144);
+        Movie updatedMovie = new Movie("Updated Movie", "Director B", (short) 1994, (short) 120);
+        given(this.movieService.existsById(anyLong())).willReturn(true);
+        given(this.movieService.findMovieById(anyLong())).willReturn(existingMovie);
+        given(this.movieService.saveMovie(any(Movie.class))).willReturn(updatedMovie);
+
+        mockMvc.perform(put("/movies/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(updatedMovie))
+                        .accept(MediaType.APPLICATION_JSON)) // Removed an extra closing parenthesis here
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Updated Movie"))
+                .andExpect(jsonPath("$.director").value("Director B"))
+                .andExpect(jsonPath("$.yearRelease").value(1994))
+                .andExpect(jsonPath("$.lengthMinutes").value(120));
+
+        verify(this.movieService).existsById(1L);
+        verify(this.movieService).findMovieById(1L);
+        verify(this.movieService).saveMovie(argThat(movie -> movie.getTitle().equals("Updated Movie")));
     }
 }
