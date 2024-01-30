@@ -1,7 +1,7 @@
 package lt.techin.demo.controllers;
 
+import lt.techin.demo.Services.BoxOfficeService;
 import lt.techin.demo.models.BoxOffice;
-import lt.techin.demo.repositories.BoxOfficeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,44 +10,44 @@ import java.util.List;
 @RestController
 public class BoxOfficeController {
 
-    private final BoxOfficeRepository boxOfficeRepository;
+    private final BoxOfficeService boxOfficeService;
 
     @Autowired
-    public BoxOfficeController(BoxOfficeRepository boxOfficeRepository) {
-        this.boxOfficeRepository = boxOfficeRepository;
+    public BoxOfficeController(BoxOfficeService boxOfficeService) {
+        this.boxOfficeService = boxOfficeService;
     }
 
     @GetMapping("/boxoffice")
     public List<BoxOffice> getBoxOffice() {
-        return this.boxOfficeRepository.findAll();
+        return this.boxOfficeService.findAllFromBoxOffice();
     }
 
     @GetMapping("/boxoffice/{id}")
     public BoxOffice getBoxOffice(@PathVariable long id) {
-        return this.boxOfficeRepository.findById(id).orElseThrow();
+        return this.boxOfficeService.findFromBoxOfficeById(id);
     }
 
     @PostMapping("/boxoffice")
     public BoxOffice insertBoxOffice(@RequestBody BoxOffice boxOffice) {
-        return this.boxOfficeRepository.save(boxOffice);
+        return this.boxOfficeService.saveFromBoxOffice(boxOffice);
     }
 
     @PutMapping("/boxoffice/{id}")
     public BoxOffice updateBoxOffice(@RequestBody BoxOffice boxoffice, @PathVariable long id) {
-        if (this.boxOfficeRepository.existsById(id)) {
-            BoxOffice boxOfficeFromDb = this.boxOfficeRepository.findById(id).orElseThrow();
+        if (this.boxOfficeService.existsFromBoxOfficeById(id)) {
+            BoxOffice boxOfficeFromDb = this.boxOfficeService.findFromBoxOfficeById(id);
             boxOfficeFromDb.setMovieId(boxoffice.getMovieId());
             boxOfficeFromDb.setRating(boxoffice.getRating());
             boxOfficeFromDb.setDomesticSales(boxoffice.getDomesticSales());
             boxOfficeFromDb.setInternationalSales(boxoffice.getInternationalSales());
-            return this.boxOfficeRepository.save(boxOfficeFromDb);
+            return this.boxOfficeService.saveFromBoxOffice(boxOfficeFromDb);
         } else {
-            return this.boxOfficeRepository.save(boxoffice);
+            return this.boxOfficeService.saveFromBoxOffice(boxoffice);
         }
     }
 
     @DeleteMapping("/boxoffice/{id}")
     public void deleteBoxOffice(@PathVariable long id) {
-        this.boxOfficeRepository.deleteById(id);
+        this.boxOfficeService.deleteFromBoxOfficeById(id);
     }
 }
