@@ -113,5 +113,34 @@ public class ActorControllerTest {
             return true;
         }));
     }
+
+    @Test
+    void updatedActor_whenNoActorFound_addNewOne() throws Exception {
+        //given
+        Actor newActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
+
+        given(this.actorService.existsById(anyLong())).willReturn(false);
+        given(this.actorService.saveActor(any(Actor.class))).willReturn(newActor);
+
+        //when
+        mockMvc.perform(put("/actors/{id}", 58)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(newActor))
+                        .accept(MediaType.APPLICATION_JSON))
+
+                //then
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.gender").value("Male"))
+                .andExpect(jsonPath("$.age").value(55))
+                .andExpect(jsonPath("$.nationality").value("USA"))
+                .andExpect(jsonPath("$.name").value("Adam"))
+                .andExpect(jsonPath("$.surname").value("Sandler"));
+
+        verify(this.actorService).existsById(58L);
+        verify(this.actorService, never()).findActorById(anyLong());
+        verify(this.actorService).saveActor(argThat(persistedActor -> persistedActor.getName()
+                .equals("Adam")));
+
+    }
 }
 
