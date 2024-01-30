@@ -142,5 +142,13 @@ public class ActorControllerTest {
                 .equals("Adam")));
 
     }
+
+    @Test
+    void deleteActor_checkIfActorDeleted() throws Exception {
+        long actorIdToDelete = 1L;
+        mockMvc.perform(delete("/actors/{id}", actorIdToDelete))
+                .andExpect(status().isOk());
+        verify(this.actorService).deleteActorById(1L);
+    }
 }
 
