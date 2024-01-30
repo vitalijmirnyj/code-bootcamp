@@ -1,7 +1,7 @@
 package lt.techin.demo;
 
 import jakarta.transaction.Transactional;
-import lt.techin.demo.Services.ActorService;
+import lt.techin.demo.services.ActorService;
 import lt.techin.demo.models.Actor;
 import lt.techin.demo.repositories.ActorRepository;
 import org.junit.jupiter.api.Test;
@@ -64,5 +64,5 @@ public class ActorServiceTest {
         then(this.actorRepository.existsById(savedActor.getId())).isFalse();
     }
 
-    
+
 }

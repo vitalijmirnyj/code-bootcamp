@@ -1,7 +1,7 @@
 package lt.techin.demo;
 
 import jakarta.transaction.Transactional;
-import lt.techin.demo.Services.MovieService;
+import lt.techin.demo.services.MovieService;
 import lt.techin.demo.models.Movie;
 import lt.techin.demo.repositories.MovieRepository;
 

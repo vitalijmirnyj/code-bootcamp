@@ -7,12 +7,9 @@ import static org.mockito.BDDMockito.given;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lt.techin.demo.Services.ActorService;
-import lt.techin.demo.Services.MovieService;
+import lt.techin.demo.services.ActorService;
 import lt.techin.demo.controllers.ActorController;
-import lt.techin.demo.controllers.MovieController;
 import lt.techin.demo.models.Actor;
-import lt.techin.demo.models.Movie;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

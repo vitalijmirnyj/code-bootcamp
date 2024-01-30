@@ -1,4 +1,4 @@
-package lt.techin.demo.Services;
+package lt.techin.demo.services;
 
 import java.util.List;
 
@@ -16,23 +16,23 @@ public class BoxOfficeService {
         this.boxOfficeRepository = boxOfficeRepository;
     }
 
-    public List<BoxOffice> findAllFromBoxOffice() {
+    public List<BoxOffice> findAllBoxOffice() {
         return this.boxOfficeRepository.findAll();
     }
 
-    public BoxOffice findFromBoxOfficeById(long id) {
+    public BoxOffice findBoxOfficeById(long id) {
         return this.boxOfficeRepository.findById(id).orElseThrow();
     }
 
-    public BoxOffice saveFromBoxOffice(BoxOffice boxOffice) {
+    public BoxOffice saveBoxOffice(BoxOffice boxOffice) {
         return this.boxOfficeRepository.save(boxOffice);
     }
 
-    public void deleteFromBoxOfficeById(long id) {
+    public void deleteBoxOfficeById(long id) {
         this.boxOfficeRepository.deleteById(id);
     }
 
-    public boolean existsFromBoxOfficeById(long id) {
+    public boolean existsBoxOfficeById(long id) {
         return this.boxOfficeRepository.existsById(id);
     }
 }

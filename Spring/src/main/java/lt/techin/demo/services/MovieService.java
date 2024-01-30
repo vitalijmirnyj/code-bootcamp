@@ -1,4 +1,4 @@
-package lt.techin.demo.Services;
+package lt.techin.demo.services;
 
 import java.util.List;
 

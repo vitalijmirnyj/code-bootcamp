@@ -7,7 +7,7 @@ import static org.mockito.BDDMockito.given;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lt.techin.demo.Services.MovieService;
+import lt.techin.demo.services.MovieService;
 import lt.techin.demo.controllers.MovieController;
 import lt.techin.demo.models.Movie;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package lt.techin.demo.controllers;
 
-import lt.techin.demo.Services.MovieService;
+import lt.techin.demo.services.MovieService;
 import lt.techin.demo.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

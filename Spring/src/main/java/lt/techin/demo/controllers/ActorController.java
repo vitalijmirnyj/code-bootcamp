@@ -1,6 +1,6 @@
 package lt.techin.demo.controllers;
 
-import lt.techin.demo.Services.ActorService;
+import lt.techin.demo.services.ActorService;
 import lt.techin.demo.models.Actor;
 
 import org.springframework.beans.factory.annotation.Autowired;
