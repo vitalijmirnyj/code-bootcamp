@@ -150,5 +150,22 @@ public class ActorControllerTest {
                 .andExpect(status().isOk());
         verify(this.actorService).deleteActorById(1L);
     }
+
+    @Test
+    void getActor_checkIfActorRetrieved() throws Exception {
+        long actorId = 1L;
+        Actor expectedActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
+
+        given(actorService.findActorById(actorId)).willReturn(expectedActor);
+        mockMvc.perform(get("/actors/{id}", actorId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.gender").value("Male"))
+                .andExpect(jsonPath("$.age").value(55))
+                .andExpect(jsonPath("$.nationality").value("USA"))
+                .andExpect(jsonPath("$.name").value("Adam"))
+                .andExpect(jsonPath("$.surname").value("Sandler"));
+
+        verify(this.actorService).findActorById(actorId);
+    }
 }
 
