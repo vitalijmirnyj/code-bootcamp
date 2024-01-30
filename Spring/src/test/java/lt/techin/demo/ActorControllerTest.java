@@ -79,5 +79,39 @@ public class ActorControllerTest {
 
         verify(this.actorService).saveActor(any(Actor.class));
     }
+
+    @Test
+    void updateActor_whenUpdateFields_thenReturn() throws Exception {
+        //given
+        Actor existingActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
+        Actor updatedActor = new Actor(2, "Female", (short) 65, "USA", "Sandra", "Bullock");
+
+        given(this.actorService.existsById(anyLong())).willReturn(true);
+        given(this.actorService.findActorById(anyLong())).willReturn(existingActor);
+        given(this.actorService.saveActor(any(Actor.class))).willReturn(updatedActor);
+//when
+        mockMvc.perform(put("/actors/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(updatedActor))
+                        .accept(MediaType.APPLICATION_JSON))
+                //then
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.gender").value("Female"))
+                .andExpect(jsonPath("$.age").value(65))
+                .andExpect(jsonPath("$.nationality").value("USA"))
+                .andExpect(jsonPath("$.name").value("Sandra"))
+                .andExpect(jsonPath("$.surname").value("Bullock"));
+
+        verify(this.actorService).existsById(1L);
+        verify(this.actorService).findActorById(1L);
+        verify(this.actorService).saveActor(argThat(m -> {
+            assertThat(m.getGender()).isEqualTo("Female");
+            assertThat(m.getAge()).isEqualTo((short) 65);
+            assertThat(m.getNationality()).isEqualTo("USA");
+            assertThat(m.getName()).isEqualTo("Sandra");
+            assertThat(m.getSurname()).isEqualTo("Bullock");
+            return true;
+        }));
+    }
 }
 
