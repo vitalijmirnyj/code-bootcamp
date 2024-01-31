@@ -2,6 +2,7 @@ package lt.techin.demo.models;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "Actors")
 public class Actor {

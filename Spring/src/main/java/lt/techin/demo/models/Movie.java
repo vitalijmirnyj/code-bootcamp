@@ -1,9 +1,7 @@
 package lt.techin.demo.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 
@@ -19,8 +17,10 @@ public class Movie {
     private String director;
     @NotNull
     @Min(value = 1900, message = "Year of release should be 1900 or later")
+    @Past(message = "Release date cannot be in the future")
     private short yearRelease;
     @Min(value = 30, message = "Length should not be lower than 30 minutes")
+    @Max(value = 600, message = "Length should not be longer than 600 minutes")
     private short lengthMinutes;
 
     public Movie(String title, String director, short yearRelease, short lengthMinutes) {
