@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -43,17 +44,23 @@ public class MovieController {
     }
 
     @PutMapping("/movies/{id}")
-    public Movie updateMovie(@RequestBody Movie movie, @PathVariable long id) {
+    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable long id) {
         if (this.movieService.existsById(id)) {
             Movie movieFromDb = this.movieService.findMovieById(id);
             movieFromDb.setTitle(movie.getTitle());
             movieFromDb.setDirector(movie.getDirector());
             movieFromDb.setYearRelease(movie.getYearRelease());
             movieFromDb.setLengthMinutes(movie.getLengthMinutes());
-            return this.movieService.saveMovie(movieFromDb);
+            this.movieService.saveMovie(movieFromDb);
+            return ResponseEntity.ok(movieFromDb);
         }
-
-        return this.movieService.saveMovie(movie);
+        Movie savedMovie = this.movieService.saveMovie(movie);
+        return ResponseEntity
+                .created(ServletUriComponentsBuilder.fromCurrentRequest()
+                        .path("/{id}").buildAndExpand(savedMovie.getId())
+                        .toUri())
+                .body(savedMovie);
+        
     }
 
     @DeleteMapping("/movies/{id}")
