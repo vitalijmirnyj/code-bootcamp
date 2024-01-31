@@ -60,12 +60,18 @@ public class MovieController {
                         .path("/{id}").buildAndExpand(savedMovie.getId())
                         .toUri())
                 .body(savedMovie);
-        
+
     }
 
     @DeleteMapping("/movies/{id}")
-    public void deleteMovie(@PathVariable long id) {
+    public ResponseEntity<Void> deleteMovie(@PathVariable long id) {
+        if (this.movieService.existsById(id)) {
+            this.movieService.deleteMovieById(id);
+            return ResponseEntity.ok().build();
+        }
         this.movieService.deleteMovieById(id);
+        return ResponseEntity.notFound().build();
     }
+
 }
 

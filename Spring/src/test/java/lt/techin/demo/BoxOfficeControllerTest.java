@@ -6,6 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.techin.demo.models.Actor;
+import lt.techin.demo.models.Movie;
 import lt.techin.demo.services.BoxOfficeService;
 import lt.techin.demo.controllers.BoxOfficeController;
 import lt.techin.demo.models.BoxOffice;
@@ -34,11 +35,13 @@ public class BoxOfficeControllerTest {
 
     @Test
     void getBoxOffice_saveBoxOffice_returnAll() throws Exception {
-        given(this.boxOfficeService.findAllBoxOffice()).willReturn(List.of(new BoxOffice(1, (double) 8.5, (long) 500000, (long) 500000),
-                new BoxOffice(2, (double) 8.5, (long) 500000, (long) 500000)
+        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie2 = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+        given(this.boxOfficeService.findAllBoxOffice()).willReturn(List.of(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000),
+                new BoxOffice(movie2, (double) 8.5, (long) 500000, (long) 500000)
         ));
 
-        mockMvc.perform(get("/boxOffice"))
+        mockMvc.perform(get("/boxoffice"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].rating").value(8.5))
                 .andExpect(jsonPath("$[0].domesticSales").value(500000))
@@ -53,10 +56,11 @@ public class BoxOfficeControllerTest {
 
     @Test
     void insertBoxOffice_whenSaveBoxOffice_thenReturnIt() throws Exception {
-        BoxOffice boxOffice = new BoxOffice(1, (double) 8.5, (long) 500000, (long) 500000);
+        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        BoxOffice boxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
         given(this.boxOfficeService.saveBoxOffice(any(BoxOffice.class))).willReturn(boxOffice);
 
-        mockMvc.perform(post("/boxOffice")
+        mockMvc.perform(post("/boxoffice")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(boxOffice)))
@@ -72,14 +76,16 @@ public class BoxOfficeControllerTest {
     @Test
     void updateBoxOffice_whenUpdateFields_thenReturn() throws Exception {
         //given
-        BoxOffice existingBoxOffice = new BoxOffice(1, (double) 8.5, (long) 500000, (long) 500000);
-        BoxOffice updatedBoxOffice = new BoxOffice(2, (double) 8.5, (long) 500000, (long) 500000);
+        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie2 = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+        BoxOffice existingBoxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
+        BoxOffice updatedBoxOffice = new BoxOffice(movie2, (double) 8.5, (long) 500000, (long) 500000);
 
         given(this.boxOfficeService.existsBoxOfficeById(anyLong())).willReturn(true);
         given(this.boxOfficeService.findBoxOfficeById(anyLong())).willReturn(existingBoxOffice);
         given(this.boxOfficeService.saveBoxOffice(any(BoxOffice.class))).willReturn(updatedBoxOffice);
 //when
-        mockMvc.perform(put("/boxOffice/{id}", 1)
+        mockMvc.perform(put("/boxoffice/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(updatedBoxOffice))
                         .accept(MediaType.APPLICATION_JSON))
@@ -103,35 +109,40 @@ public class BoxOfficeControllerTest {
 
     @Test
     void updatedBoxOffice_whenNoBoxOfficeFound_addNewOne() throws Exception {
-        //given
-        BoxOffice boxOffice = new BoxOffice(1, (double) 8.5, (long) 500000, (long) 500000);
+        // Given
+        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        BoxOffice boxOffice = new BoxOffice(movie, 8.5, 500000L, 500000L);
 
         given(this.boxOfficeService.existsBoxOfficeById(anyLong())).willReturn(false);
-        given(this.boxOfficeService.saveBoxOffice(any(BoxOffice.class))).willReturn(new BoxOffice());
 
-        //when
-        mockMvc.perform(put("/actors/{id}", 58)
+        given(this.boxOfficeService.saveBoxOffice(any(BoxOffice.class)))
+                .willAnswer(invocation -> {
+                    BoxOffice savedBoxOffice = invocation.getArgument(0);
+                    savedBoxOffice.setRating(boxOffice.getRating());
+                    return savedBoxOffice;
+                });
+
+        // When
+        mockMvc.perform(put("/boxoffice/{id}", 58)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(boxOffice))
                         .accept(MediaType.APPLICATION_JSON))
 
-                //then
+                // Then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rating").value(8.5))
                 .andExpect(jsonPath("$.domesticSales").value(500000))
                 .andExpect(jsonPath("$.internationalSales").value(500000));
 
-
         verify(this.boxOfficeService).existsBoxOfficeById(58L);
         verify(this.boxOfficeService, never()).findBoxOfficeById(anyLong());
         verify(this.boxOfficeService).saveBoxOffice(argThat(persistedBoxOffice -> persistedBoxOffice.getRating() == 8.5));
-
     }
 
     @Test
     void deleteBoxOffice_checkIfBoxOfficeDeleted() throws Exception {
         long boxOfficeIdToDelete = 1L;
-        mockMvc.perform(delete("/boxOffice/{id}", boxOfficeIdToDelete))
+        mockMvc.perform(delete("/boxoffice/{id}", boxOfficeIdToDelete))
                 .andExpect(status().isOk());
         verify(this.boxOfficeService).deleteBoxOfficeById(1L);
     }
@@ -139,10 +150,11 @@ public class BoxOfficeControllerTest {
     @Test
     void getBoxOffice_checkIfBoxOfficeRetrieved() throws Exception {
         long boxOfficeId = 1L;
-        BoxOffice expectedBoxOffice = new BoxOffice(1, (double) 8.5, (long) 500000, (long) 500000);
+        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        BoxOffice expectedBoxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
 
         given(boxOfficeService.findBoxOfficeById(boxOfficeId)).willReturn(expectedBoxOffice);
-        mockMvc.perform(get("/boxOffice/{id}", boxOfficeId))
+        mockMvc.perform(get("/boxoffice/{id}", boxOfficeId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rating").value(8.5))
                 .andExpect(jsonPath("$.domesticSales").value(500000))

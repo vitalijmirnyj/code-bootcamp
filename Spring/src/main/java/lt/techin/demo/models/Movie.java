@@ -1,6 +1,9 @@
 package lt.techin.demo.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 
@@ -9,9 +12,15 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotNull
+    @Size(min = 1, message = "First name should be at least 1 characters long")
     private String title;
+    @NotNull
     private String director;
+    @NotNull
+    @Min(value = 1900, message = "Year of release should be 1900 or later")
     private short yearRelease;
+    @Min(value = 30, message = "Length should not be lower than 30 minutes")
     private short lengthMinutes;
 
     public Movie(String title, String director, short yearRelease, short lengthMinutes) {

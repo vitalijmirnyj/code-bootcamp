@@ -18,9 +18,9 @@ public class BoxOffice {
     private long domesticSales;
     private long internationalSales;
 
-    public BoxOffice(long movieId, double rating, long domesticSales, long internationalSales) {
+    public BoxOffice(Movie movie, double rating, long domesticSales, long internationalSales) {
 
-        this.movieId = movieId;
+        this.movie = movie;
         this.rating = rating;
         this.domesticSales = domesticSales;
         this.internationalSales = internationalSales;
