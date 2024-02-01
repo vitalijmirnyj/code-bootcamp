@@ -19,7 +19,9 @@ public class PositiveNumbers {
     }
 
     public static List<Integer> positive(List<Integer> numbers) {
-        return numbers.stream().filter(num -> num > 0).collect(Collectors.toCollection(ArrayList::new));
+        return numbers.stream()
+                .filter(num -> num > 0)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
 
