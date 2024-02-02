@@ -18,6 +18,8 @@ public class User {
     @NotNull
     @Size(min = 6, message = "User name should be at least 6 characters long")
     private String username;
+
+    @NotNull
     @Size(min = 8, message = "Password should be at least 8 characters long")
     private String password;
 
