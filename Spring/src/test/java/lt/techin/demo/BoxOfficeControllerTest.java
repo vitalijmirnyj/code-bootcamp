@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -35,8 +36,8 @@ public class BoxOfficeControllerTest {
 
     @Test
     void getBoxOffice_saveBoxOffice_returnAll() throws Exception {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
-        Movie movie2 = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
+        Movie movie2 = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         given(this.boxOfficeService.findAllBoxOffice()).willReturn(List.of(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000),
                 new BoxOffice(movie2, (double) 8.5, (long) 500000, (long) 500000)
         ));
@@ -56,7 +57,7 @@ public class BoxOfficeControllerTest {
 
     @Test
     void insertBoxOffice_whenSaveBoxOffice_thenReturnIt() throws Exception {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice boxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
         given(this.boxOfficeService.saveBoxOffice(any(BoxOffice.class))).willReturn(boxOffice);
 
@@ -76,8 +77,8 @@ public class BoxOfficeControllerTest {
     @Test
     void updateBoxOffice_whenUpdateFields_thenReturn() throws Exception {
         //given
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
-        Movie movie2 = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
+        Movie movie2 = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice existingBoxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
         BoxOffice updatedBoxOffice = new BoxOffice(movie2, (double) 8.5, (long) 500000, (long) 500000);
 
@@ -110,7 +111,7 @@ public class BoxOfficeControllerTest {
     @Test
     void updatedBoxOffice_whenNoBoxOfficeFound_addNewOne() throws Exception {
         // Given
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice boxOffice = new BoxOffice(movie, 8.5, 500000L, 500000L);
 
         given(this.boxOfficeService.existsBoxOfficeById(anyLong())).willReturn(false);
@@ -150,7 +151,7 @@ public class BoxOfficeControllerTest {
     @Test
     void getBoxOffice_checkIfBoxOfficeRetrieved() throws Exception {
         long boxOfficeId = 1L;
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice expectedBoxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
 
         given(boxOfficeService.findBoxOfficeById(boxOfficeId)).willReturn(expectedBoxOffice);

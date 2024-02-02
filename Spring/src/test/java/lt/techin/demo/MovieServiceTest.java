@@ -16,6 +16,7 @@ import static org.assertj.core.api.BDDAssertions.catchThrowable;
 import static org.assertj.core.api.BDDAssertions.then;
 
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 
@@ -31,7 +32,7 @@ public class MovieServiceTest {
 
     @Test
     void findAllMovies_saveMovies_returned() {
-        Movie savedMovie1 = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        Movie savedMovie1 = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", LocalDate.of(1991, 10, 10), (short) 120));
         Movie foundMovie = this.movieService.findMovieById(savedMovie1.getId());
         then(foundMovie).isEqualTo(savedMovie1);
     }
@@ -45,7 +46,7 @@ public class MovieServiceTest {
     @Test
     void saveMovie() {
 
-        Movie savedMovie = this.movieService.saveMovie(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        Movie savedMovie = this.movieService.saveMovie(new Movie("Toy Story 3", "John Malkovich", LocalDate.of(1991, 10, 10), (short) 120));
 
         Movie foundMovie = this.movieRepository.findById(savedMovie.getId()).orElse(null);
         then(savedMovie).isEqualTo(foundMovie);
@@ -54,14 +55,14 @@ public class MovieServiceTest {
 
     @Test
     void existsMovieById_CheckIfExists_ReturnTrue() {
-        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", LocalDate.of(1991, 10, 10), (short) 120));
         boolean existsMovie = this.movieService.existsById(savedMovie.getId());
         then(existsMovie).isTrue();
     }
 
     @Test
     void deleteMovieById_delete_cannotFind() {
-        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", (short) 1995, (short) 120));
+        Movie savedMovie = this.movieRepository.save(new Movie("Toy Story 3", "John Malkovich", LocalDate.of(1991, 10, 10), (short) 120));
         this.movieService.deleteMovieById(savedMovie.getId());
         then(this.movieRepository.existsById(savedMovie.getId())).isFalse();
     }

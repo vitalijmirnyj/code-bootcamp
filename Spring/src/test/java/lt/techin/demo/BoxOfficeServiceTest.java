@@ -13,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.BDDAssertions.catchThrowable;
 import static org.assertj.core.api.BDDAssertions.then;
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 
@@ -28,8 +29,8 @@ public class BoxOfficeServiceTest {
 
     @Test
     void findAllBoxOffice_saveBoxOffice_returned() {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
-        Movie movie2 = new Movie("Terminator 2", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
+        Movie movie2 = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice savedBoxOffice = this.boxOfficeRepository.save(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000));
         BoxOffice savedBoxOffice2 = this.boxOfficeRepository.save(new BoxOffice(movie2, (double) 9.5, (long) 500000, (long) 500000));
         BoxOffice foundBoxOffice = this.boxOfficeService.findBoxOfficeById(savedBoxOffice.getMovieId());
@@ -46,7 +47,7 @@ public class BoxOfficeServiceTest {
 
     @Test
     void saveBoxOffice() {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice savedBoxOffice = this.boxOfficeService.saveBoxOffice(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000));
 
         BoxOffice foundBoxOffice = this.boxOfficeRepository.findById(savedBoxOffice.getMovieId()).orElse(null);
@@ -56,7 +57,7 @@ public class BoxOfficeServiceTest {
 
     @Test
     void existsBoxOfficeById_CheckIfExists_ReturnTrue() {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice savedBoxOffice = this.boxOfficeRepository.save(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000));
         boolean existsBoxOffice = this.boxOfficeService.existsBoxOfficeById(savedBoxOffice.getMovieId());
         then(existsBoxOffice).isTrue();
@@ -64,7 +65,7 @@ public class BoxOfficeServiceTest {
 
     @Test
     void deleteBoxOfficeById_delete_cannotFind() {
-        Movie movie = new Movie("Terminator", "James Cameron", (short) 1991, (short) 144);
+        Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice savedBoxOffice = this.boxOfficeRepository.save(new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000));
         this.boxOfficeService.deleteBoxOfficeById(savedBoxOffice.getMovieId());
         then(this.boxOfficeRepository.existsById(savedBoxOffice.getMovieId())).isFalse();
