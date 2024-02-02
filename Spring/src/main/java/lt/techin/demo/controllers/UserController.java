@@ -38,20 +38,17 @@ public class UserController {
     @PutMapping("/users/{id}")
     public User updateUser(@RequestBody User user, @PathVariable long id) {
         if (this.userService.existsById(id)) {
-            User userFromDb = this.actorService.findActorById(id);
-            actorFromDb.setGender(actor.getGender());
-            actorFromDb.setAge(actor.getAge());
-            actorFromDb.setNationality(actor.getNationality());
-            actorFromDb.setName(actor.getName());
-            actorFromDb.setSurname(actor.getSurname());
-            return this.actorService.saveActor(actorFromDb);
+            User userFromDb = this.userService.findUserById(id);
+            userFromDb.setUsername(user.getUsername());
+            userFromDb.setPassword(user.getPassword());
+            return this.userService.saveUser(userFromDb);
         }
-        return this.actorService.saveActor(actor);
+        return this.userService.saveUser(user);
     }
 
-    @DeleteMapping("/actors/{id}")
-    public void deleteActor(@PathVariable long id) {
-        this.actorService.deleteActorById(id);
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable long id) {
+        this.userService.deleteUserById(id);
     }
 
 }
