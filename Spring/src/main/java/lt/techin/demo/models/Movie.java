@@ -18,7 +18,7 @@ public class Movie {
     @NotNull
     private String director;
     @NotNull
-    @Min(value = 1900, message = "Year of release should be 1900 or later")
+    //@Min(value = 1900, message = "Year of release should be 1900 or later")
     @Past(message = "Release date cannot be in the future")
     private LocalDate yearRelease;
     @Min(value = 30, message = "Length should not be lower than 30 minutes")

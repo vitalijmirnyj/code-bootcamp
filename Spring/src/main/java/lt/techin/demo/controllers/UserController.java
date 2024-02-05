@@ -6,7 +6,10 @@ import lt.techin.demo.repositories.UserRepository;
 
 import lt.techin.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -14,9 +17,12 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/users")
@@ -32,8 +38,15 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public User insertUser(@RequestBody User user) {
-        return this.userService.saveUser(user);
+    public ResponseEntity<User> insertUser(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User savedUser = this.userService.saveUser(user);
+        return ResponseEntity.created(ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri()).body(savedUser);
+
     }
 
     @PutMapping("/users/{id}")

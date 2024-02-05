@@ -7,6 +7,7 @@ import static org.mockito.BDDMockito.given;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lt.techin.demo.services.MovieService;
 import lt.techin.demo.controllers.MovieController;
 import lt.techin.demo.models.Movie;
@@ -28,6 +29,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = MovieController.class)
 public class MovieControllerTest {
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.registerModule(new JavaTimeModule());
+    }
+
 
     @Autowired
     private MockMvc mockMvc;
@@ -63,7 +71,7 @@ public class MovieControllerTest {
         mockMvc.perform(post("/movies")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(movie)))
+                        .content(objectMapper.writeValueAsString(movie)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Die Hard"))
                 .andExpect(jsonPath("$.director").value("Tony Scott"))
@@ -82,10 +90,11 @@ public class MovieControllerTest {
         given(this.movieService.existsById(anyLong())).willReturn(true);
         given(this.movieService.findMovieById(anyLong())).willReturn(existingMovie);
         given(this.movieService.saveMovie(any(Movie.class))).willReturn(updatedMovie);
-//when
+
+        //when
         mockMvc.perform(put("/movies/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(updatedMovie))
+                        .content(objectMapper.writeValueAsString(updatedMovie))
                         .accept(MediaType.APPLICATION_JSON))
                 //then
                 .andExpect(status().isOk())
@@ -116,7 +125,7 @@ public class MovieControllerTest {
         //when
         mockMvc.perform(put("/movies/{id}", 58)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(newMovie))
+                        .content(objectMapper.writeValueAsString(newMovie))
                         .accept(MediaType.APPLICATION_JSON))
 
                 //then
