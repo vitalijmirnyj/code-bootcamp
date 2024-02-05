@@ -20,7 +20,9 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
+    @Column(unique = true)
     @Size(min = 6, message = "User name should be at least 6 characters long")
+
     private String username;
 
     @NotNull
