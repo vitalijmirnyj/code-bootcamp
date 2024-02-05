@@ -26,9 +26,15 @@ public class User implements UserDetails {
     @Size(min = 8, message = "Password should be at least 8 characters long")
     private String password;
 
-    public User(String username, String password) {
+
+    @NotNull
+    @Size(min = 4, message = "Password should be at least 4 characters long")
+    private String role;
+
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public User() {
@@ -47,6 +53,10 @@ public class User implements UserDetails {
         return password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -54,6 +64,11 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
     @Override
     public boolean isAccountNonExpired() {
