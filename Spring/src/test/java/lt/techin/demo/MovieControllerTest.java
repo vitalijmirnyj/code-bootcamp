@@ -8,6 +8,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lt.techin.demo.Security.SecurityConfig;
 import lt.techin.demo.services.MovieService;
 import lt.techin.demo.controllers.MovieController;
 import lt.techin.demo.models.Movie;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(controllers = MovieController.class)
+@Import(SecurityConfig.class)
 public class MovieControllerTest {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -64,6 +67,7 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(role)
     void insertMovie_whenSaveMovie_thenReturnIt() throws Exception {
         Movie movie = new Movie("Die Hard", "Tony Scott", LocalDate.of(1991, 10, 10), (short) 110);
         given(this.movieService.saveMovie(any(Movie.class))).willReturn(movie);
