@@ -58,11 +58,11 @@ public class MovieControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("Robocop"))
                 .andExpect(jsonPath("$[0].director").value("Verhoven"))
-                .andExpect(jsonPath("$[0].yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$[0].yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$[0].lengthMinutes").value(114))
                 .andExpect(jsonPath("$[1].title").value("Terminator"))
                 .andExpect(jsonPath("$[1].director").value("Cameron"))
-                .andExpect(jsonPath("$[1].yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$[1].yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$[1].lengthMinutes").value(114));
 
         verify(this.movieService).findAllMovies();
@@ -78,10 +78,10 @@ public class MovieControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(movie)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.title").value("Die Hard"))
                 .andExpect(jsonPath("$.director").value("Tony Scott"))
-                .andExpect(jsonPath("$.yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$.yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$.lengthMinutes").value(110));
 
         verify(this.movieService).saveMovie(any(Movie.class));
@@ -107,15 +107,16 @@ public class MovieControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Updated Movie"))
                 .andExpect(jsonPath("$.director").value("Director B"))
-                .andExpect(jsonPath("$.yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$.yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$.lengthMinutes").value(120));
 
         verify(this.movieService).existsById(1L);
         verify(this.movieService).findMovieById(1L);
         verify(this.movieService).saveMovie(argThat(m -> {
+
             assertThat(m.getTitle()).isEqualTo("Updated Movie");
             assertThat(m.getDirector()).isEqualTo("Director B");
-            assertThat(m.getYearRelease()).isEqualTo(1991 - 10 - 10);
+            assertThat(m.getYearRelease()).isEqualTo(LocalDate.of(1991, 10, 10));
             assertThat(m.getLengthMinutes()).isEqualTo((short) 120);
             return true;
         }));
@@ -137,10 +138,10 @@ public class MovieControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
 
                 //then
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.title").value("New Movie"))
                 .andExpect(jsonPath("$.director").value("Director C"))
-                .andExpect(jsonPath("$.yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$.yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$.lengthMinutes").value(120));
 
         verify(this.movieService).existsById(58L);
@@ -153,6 +154,7 @@ public class MovieControllerTest {
     @Test
     @WithMockUser(roles = {"ADMIN"})
     void deleteMovie_checkIfMovieDeleted() throws Exception {
+        given(this.movieService.existsById(anyLong())).willReturn(true);
         long movieIdToDelete = 1L;
         mockMvc.perform(delete("/movies/{id}", movieIdToDelete))
                 .andExpect(status().isOk());
@@ -170,7 +172,7 @@ public class MovieControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Terminator 2"))
                 .andExpect(jsonPath("$.director").value("James Cameron"))
-                .andExpect(jsonPath("$.yearRelease").value(1991 - 10 - 10))
+                .andExpect(jsonPath("$.yearRelease").value("1991-10-10"))
                 .andExpect(jsonPath("$.lengthMinutes").value(144));
 
         verify(this.movieService).findMovieById(movieId);
