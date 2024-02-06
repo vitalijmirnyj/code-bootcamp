@@ -48,7 +48,7 @@ public class MovieControllerTest {
     private MovieService movieService;
 
     @Test
-    @WithMockUser(roles = {"ADMIN"})
+    @WithMockUser
     void getMovies_saveMovies_returnAll() throws Exception {
         given(this.movieService.findAllMovies()).willReturn(List.of(new Movie("Robocop", "Verhoven", LocalDate.of(1991, 10, 10), (short) 114),
                 new Movie("Terminator", "Cameron", LocalDate.of(1991, 10, 10), (short) 114)
@@ -162,7 +162,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = {"ADMIN"})
+    @WithMockUser
     void getMovie_checkIfMovieRetrieved() throws Exception {
         long movieId = 1L;
         Movie expectedMovie = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);

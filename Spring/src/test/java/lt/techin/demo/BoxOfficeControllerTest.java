@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
@@ -35,6 +36,7 @@ public class BoxOfficeControllerTest {
     private BoxOfficeService boxOfficeService;
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getBoxOffice_saveBoxOffice_returnAll() throws Exception {
         Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         Movie movie2 = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
@@ -56,6 +58,7 @@ public class BoxOfficeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void insertBoxOffice_whenSaveBoxOffice_thenReturnIt() throws Exception {
         Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
         BoxOffice boxOffice = new BoxOffice(movie, (double) 8.5, (long) 500000, (long) 500000);
@@ -75,6 +78,7 @@ public class BoxOfficeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updateBoxOffice_whenUpdateFields_thenReturn() throws Exception {
         //given
         Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
@@ -109,6 +113,7 @@ public class BoxOfficeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updatedBoxOffice_whenNoBoxOfficeFound_addNewOne() throws Exception {
         // Given
         Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
@@ -141,6 +146,7 @@ public class BoxOfficeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void deleteBoxOffice_checkIfBoxOfficeDeleted() throws Exception {
         long boxOfficeIdToDelete = 1L;
         mockMvc.perform(delete("/boxoffice/{id}", boxOfficeIdToDelete))
@@ -149,6 +155,7 @@ public class BoxOfficeControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getBoxOffice_checkIfBoxOfficeRetrieved() throws Exception {
         long boxOfficeId = 1L;
         Movie movie = new Movie("Terminator", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
