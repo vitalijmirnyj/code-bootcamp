@@ -163,7 +163,7 @@ public class MovieControllerTest {
 
     @Test
     @WithMockUser
-    void getMovie_checkIfMovieRetrieved() throws Exception {
+    void getMovie_whenExpectedMovieReturned_thenVerifyOk() throws Exception {
         long movieId = 1L;
         Movie expectedMovie = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);
 
