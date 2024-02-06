@@ -18,6 +18,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
@@ -47,6 +48,7 @@ public class MovieControllerTest {
     private MovieService movieService;
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getMovies_saveMovies_returnAll() throws Exception {
         given(this.movieService.findAllMovies()).willReturn(List.of(new Movie("Robocop", "Verhoven", LocalDate.of(1991, 10, 10), (short) 114),
                 new Movie("Terminator", "Cameron", LocalDate.of(1991, 10, 10), (short) 114)
@@ -67,7 +69,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    @WithMockUser(role)
+    @WithMockUser(roles = {"ADMIN"})
     void insertMovie_whenSaveMovie_thenReturnIt() throws Exception {
         Movie movie = new Movie("Die Hard", "Tony Scott", LocalDate.of(1991, 10, 10), (short) 110);
         given(this.movieService.saveMovie(any(Movie.class))).willReturn(movie);
@@ -86,6 +88,7 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updateMovie_whenUpdateFields_thenReturn() throws Exception {
         //given
         Movie existingMovie = new Movie("Existing Movie", "Director A", LocalDate.of(1991, 10, 10), (short) 144);
@@ -119,6 +122,7 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updatedMovie_whenNoMovieFound_addNewOne() throws Exception {
         //given
         Movie newMovie = new Movie("New Movie", "Director C", LocalDate.of(1991, 10, 10), (short) 120);
@@ -147,6 +151,7 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void deleteMovie_checkIfMovieDeleted() throws Exception {
         long movieIdToDelete = 1L;
         mockMvc.perform(delete("/movies/{id}", movieIdToDelete))
@@ -155,6 +160,7 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getMovie_checkIfMovieRetrieved() throws Exception {
         long movieId = 1L;
         Movie expectedMovie = new Movie("Terminator 2", "James Cameron", LocalDate.of(1991, 10, 10), (short) 144);

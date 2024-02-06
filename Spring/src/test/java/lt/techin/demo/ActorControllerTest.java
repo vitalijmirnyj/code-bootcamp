@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public class ActorControllerTest {
     private ActorService actorService;
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getActors_saveActors_returnAll() throws Exception {
         given(this.actorService.findAllActors()).willReturn(List.of(new Actor(1, "Male", (short) 49, "USA", "Leonardo", "Dicaprio"),
                 new Actor(2, "Female", (short) 49, "USA", "Linda", "Hamilton")
@@ -58,6 +60,7 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void insertActor_whenSaveActor_thenReturnIt() throws Exception {
         Actor actor = new Actor(1, "Male", (short) 50, "USA", "David", "Duchovni");
         given(this.actorService.saveActor(any(Actor.class))).willReturn(actor);
@@ -78,6 +81,7 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updateActor_whenUpdateFields_thenReturn() throws Exception {
         //given
         Actor existingActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
@@ -112,6 +116,7 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void updatedActor_whenNoActorFound_addNewOne() throws Exception {
         //given
         Actor newActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
@@ -141,6 +146,7 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void deleteActor_checkIfActorDeleted() throws Exception {
         long actorIdToDelete = 1L;
         mockMvc.perform(delete("/actors/{id}", actorIdToDelete))
@@ -149,6 +155,7 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     void getActor_checkIfActorRetrieved() throws Exception {
         long actorId = 1L;
         Actor expectedActor = new Actor(1, "Male", (short) 55, "USA", "Adam", "Sandler");
