@@ -155,6 +155,17 @@ public class ActorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"USER"})
+    void deleteActor_whenUserTriesToDelete_thenForbidden() throws Exception {
+        long actorIdToDelete = 1L;
+
+        mockMvc.perform(delete("/actors/{id}", actorIdToDelete))
+                .andExpect(status().isForbidden());
+
+        verify(actorService, never()).deleteActorById(anyLong());
+    }
+
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void getActor_checkIfActorRetrieved() throws Exception {
         long actorId = 1L;
