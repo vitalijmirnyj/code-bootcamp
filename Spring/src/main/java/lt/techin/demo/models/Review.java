@@ -60,7 +60,7 @@ public class Review {
         this.website = website;
     }
 
-    public void setUserName(User userName) {
+    public void setUser(User user) {
         this.user = user;
     }
 

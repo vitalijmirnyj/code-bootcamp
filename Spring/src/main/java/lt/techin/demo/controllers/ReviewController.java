@@ -44,7 +44,7 @@ public class ReviewController {
             Review reviewFromDb = this.reviewRepository.findById(id).orElseThrow();
             reviewFromDb.setMovieId(review.getMovie());
             reviewFromDb.setWebsite(review.getWebsite());
-            reviewFromDb.setUserName(review.getUserName());
+            reviewFromDb.setUser(review.getUserName());
             reviewFromDb.setRatingScore(review.getRatingScore());
 
             return this.reviewRepository.save(reviewFromDb);
