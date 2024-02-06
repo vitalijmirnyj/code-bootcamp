@@ -153,7 +153,7 @@ public class MovieControllerTest {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    void deleteMovie_checkIfMovieDeleted() throws Exception {
+    void deleteMovie_whenAdminAndMovieExists_thenMovieDeletedSuccessfully() throws Exception {
         given(this.movieService.existsById(anyLong())).willReturn(true);
         long movieIdToDelete = 1L;
         mockMvc.perform(delete("/movies/{id}", movieIdToDelete))
