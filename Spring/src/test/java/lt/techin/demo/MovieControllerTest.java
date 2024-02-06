@@ -162,6 +162,17 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"USER"})
+    void deleteMovie_whenUserTriesToDelete_thenForbidden() throws Exception {
+        long movieIdToDelete = 1L;
+
+        mockMvc.perform(delete("/movies/{id}", movieIdToDelete))
+                .andExpect(status().isForbidden());
+
+        verify(movieService, never()).deleteMovieById(anyLong());
+    }
+
+    @Test
     @WithMockUser
     void getMovie_whenExpectedMovieReturned_thenVerifyOk() throws Exception {
         long movieId = 1L;
