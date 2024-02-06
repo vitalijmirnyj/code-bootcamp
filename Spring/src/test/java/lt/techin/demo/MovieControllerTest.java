@@ -88,6 +88,21 @@ public class MovieControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = {"USER"})
+    void insertMovie_whenUserTriesToInsert_thenForbidden() throws Exception {
+        Movie movie = new Movie("Die Hard", "Tony Scott", LocalDate.of(1991, 10, 10), (short) 110);
+
+        mockMvc.perform(post("/movies")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(movie)))
+                .andExpect(status().isForbidden());
+
+        verify(movieService, never()).saveMovie(any(Movie.class));
+
+    }
+
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void updateMovie_whenUpdateFields_thenReturn() throws Exception {
         //given
