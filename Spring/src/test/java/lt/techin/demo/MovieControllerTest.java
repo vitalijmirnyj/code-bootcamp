@@ -124,7 +124,7 @@ public class MovieControllerTest {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    void updatedMovie_whenNoMovieFound_addNewOne() throws Exception {
+    void updateMovie_whenNoMovieFound_addNewOne() throws Exception {
         //given
         Movie newMovie = new Movie("New Movie", "Director C", LocalDate.of(1991, 10, 10), (short) 120);
 
@@ -148,6 +148,24 @@ public class MovieControllerTest {
         verify(this.movieService, never()).findMovieById(anyLong());
         verify(this.movieService).saveMovie(argThat(persistedMovie -> persistedMovie.getTitle()
                 .equals("New Movie")));
+
+    }
+
+    @Test
+    @WithMockUser(roles = {"USER"})
+    void updateMovie_whenUserTriesToUpdate_thenForbidden() throws Exception {
+        long movieIdToUpdate = 58L;
+        Movie newMovie = new Movie("New Movie", "Director C", LocalDate.of(1991, 10, 10), (short) 120);
+
+        mockMvc.perform(put("/movies/{id}", movieIdToUpdate)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(newMovie))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isForbidden());
+
+        verify(movieService, never()).existsById(anyLong());
+        verify(movieService, never()).findMovieById(anyLong());
+        verify(movieService, never()).saveMovie(any(Movie.class));
 
     }
 
