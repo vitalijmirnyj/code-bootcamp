@@ -12,9 +12,9 @@ public class Director {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long director_id;
-
+    @Column(name = "DIRECTORNAME")
     private String directorName;
-
+    @Column(name = "DATEOFBIRTH")
     private LocalDate dateOfBirth;
 
     private String nationality;

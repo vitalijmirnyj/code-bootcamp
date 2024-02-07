@@ -17,6 +17,7 @@ import java.util.List;
 public class DirectorController {
 
     private final DirectorService directorService;
+
     @Autowired
     public DirectorController(DirectorService directorService) {
         this.directorService = directorService;
@@ -74,5 +75,5 @@ public class DirectorController {
         this.directorService.deleteDirectorById(id);
         return ResponseEntity.notFound().build();
     }
-    }
 }
+
