@@ -38,18 +38,18 @@ public class DirectorController {
     public Director updateDirector(@RequestBody Director director, @PathVariable long id) {
         if (this.directorService.existsById(id)) {
             Director directorFromDb = this.directorService.findDirectorById(id);
-            directorFromDb.setGender(director.getGender());
-            directorFromDb.setAge(director.getAge());
+            directorFromDb.setDirectorName(director.getDirectorName());
+            directorFromDb.setDateOfBirth(director.getDateOfBirth());
             directorFromDb.setNationality(director.getNationality());
-            directorFromDb.setName(director.getName());
-            directorFromDb.setSurname(director.getSurname());
-            return this.actorService.saveActor(actorFromDb);
+            directorFromDb.setBiography(director.getBiography());
+            directorFromDb.setAwards(director.getAwards());
+            return this.directorService.saveDirector(directorFromDb);
         }
-        return this.actorService.saveActor(actor);
+        return this.directorService.saveDirector(director);
     }
 
-    @DeleteMapping("/actors/{id}")
-    public void deleteActor(@PathVariable long id) {
-        this.actorService.deleteActorById(id);
+    @DeleteMapping("/directors/{id}")
+    public void deleteDerector(@PathVariable long id) {
+        this.directorService.deleteDirectorById(id);
     }
 }
