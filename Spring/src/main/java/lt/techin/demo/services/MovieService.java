@@ -2,6 +2,7 @@ package lt.techin.demo.services;
 
 import java.util.List;
 
+import lt.techin.demo.models.DirectorMovieId;
 import lt.techin.demo.models.Movie;
 import lt.techin.demo.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,6 @@ public class MovieService {
     public boolean existsById(long id) {
         return this.movieRepository.existsById(id);
     }
+
+
 }

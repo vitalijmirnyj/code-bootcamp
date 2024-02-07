@@ -2,8 +2,10 @@ package lt.techin.demo.controllers;
 
 import lt.techin.demo.models.*;
 import lt.techin.demo.repositories.DirectorMovieRepository;
+import lt.techin.demo.services.DirectorMovieService;
 import lt.techin.demo.services.DirectorService;
 import lt.techin.demo.services.MovieService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,20 +13,20 @@ import java.util.List;
 @RestController
 public class DirectorMovieController {
 
-    private final DirectorMovieRepository directorMovieRepository;
+    private final DirectorMovieService directorMovieService;
     private final DirectorService directorService;
     private final MovieService movieService;
 
-    public DirectorMovieController(DirectorMovieRepository directorMovieRepository,
+    public DirectorMovieController(DirectorMovieService directorMovieService,
                                    DirectorService directorService, MovieService movieService) {
-        this.directorMovieRepository = directorMovieRepository;
+        this.directorMovieService = directorMovieService;
         this.directorService = directorService;
         this.movieService = movieService;
     }
 
     @GetMapping("/directorsmovies")
     public List<DirectorMovie> getDirectorsMovies() {
-        return this.directorMovieRepository.findAll();
+        return this.directorMovieService.findAllDirectorsMovies();
     }
 
     @GetMapping("/directors/{directorId}/movies/{movieId}")
@@ -34,12 +36,26 @@ public class DirectorMovieController {
         Movie movie = this.movieService.findMovieById(movieId);
         DirectorMovieId directorMovieId = new DirectorMovieId(director, movie);
 
-        return this.directorMovieRepository.findById(directorMovieId).orElse(null);
+        return this.directorMovieService.findDirectorMovieById(directorMovieId);
 
     }
 
     @PostMapping("/directorsmovies")
     public DirectorMovie insertDirectorMovie(@RequestBody DirectorMovie directorMovie) {
-        return this.directorMovieRepository.save(directorMovie);
+        return this.directorMovieService.saveDirectorMovie(directorMovie);
+    }
+
+    @DeleteMapping("/directors/{directorId}/movies/{movieId}")
+    public ResponseEntity<Void> deleteDirectorMovie(@PathVariable("directorId") long directorId,
+                                                    @PathVariable("movieId") long movieId) {
+        Director director = this.directorService.findDirectorById(directorId);
+        Movie movie = this.movieService.findMovieById(movieId);
+        DirectorMovieId directorMovieId = new DirectorMovieId(director, movie);
+        if (this.directorMovieService.existsById(directorMovieId)) {
+            this.directorMovieService.deleteDirectorMovieById(directorMovieId);
+            return ResponseEntity.ok().build();
+        }
+        this.directorMovieService.deleteDirectorMovieById(directorMovieId);
+        return ResponseEntity.notFound().build();
     }
 }
