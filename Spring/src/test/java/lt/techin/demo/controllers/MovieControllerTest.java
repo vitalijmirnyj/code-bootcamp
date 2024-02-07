@@ -1,4 +1,4 @@
-package lt.techin.demo.ControllerTest;
+package lt.techin.demo.controllers;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,9 +8,8 @@ import static org.mockito.BDDMockito.given;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lt.techin.demo.Security.SecurityConfig;
+import lt.techin.demo.security.SecurityConfig;
 import lt.techin.demo.services.MovieService;
-import lt.techin.demo.controllers.MovieController;
 import lt.techin.demo.models.Movie;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

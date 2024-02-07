@@ -1,4 +1,4 @@
-package lt.techin.demo.Security;
+package lt.techin.demo.security;
 
 import lt.techin.demo.models.User;
 import lt.techin.demo.repositories.UserRepository;

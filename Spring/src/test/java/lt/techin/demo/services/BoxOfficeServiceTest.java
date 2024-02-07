@@ -1,8 +1,7 @@
-package lt.techin.demo.ServiceTest;
+package lt.techin.demo.services;
 
 import jakarta.transaction.Transactional;
 import lt.techin.demo.models.Movie;
-import lt.techin.demo.services.BoxOfficeService;
 import lt.techin.demo.models.BoxOffice;
 import lt.techin.demo.repositories.BoxOfficeRepository;
 import org.junit.jupiter.api.Test;

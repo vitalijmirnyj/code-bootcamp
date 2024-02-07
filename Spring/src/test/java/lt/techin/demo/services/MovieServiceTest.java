@@ -1,7 +1,6 @@
-package lt.techin.demo.ServiceTest;
+package lt.techin.demo.services;
 
 import jakarta.transaction.Transactional;
-import lt.techin.demo.services.MovieService;
 import lt.techin.demo.models.Movie;
 import lt.techin.demo.repositories.MovieRepository;
 

@@ -1,7 +1,6 @@
-package lt.techin.demo.ServiceTest;
+package lt.techin.demo.services;
 
 import jakarta.transaction.Transactional;
-import lt.techin.demo.services.ActorService;
 import lt.techin.demo.models.Actor;
 import lt.techin.demo.repositories.ActorRepository;
 import org.junit.jupiter.api.Test;

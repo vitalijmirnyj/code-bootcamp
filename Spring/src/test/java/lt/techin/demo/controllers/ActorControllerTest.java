@@ -1,4 +1,4 @@
-package lt.techin.demo.ControllerTest;
+package lt.techin.demo.controllers;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +8,6 @@ import static org.mockito.BDDMockito.given;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.techin.demo.services.ActorService;
-import lt.techin.demo.controllers.ActorController;
 import lt.techin.demo.models.Actor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
