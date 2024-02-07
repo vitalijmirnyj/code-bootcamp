@@ -23,7 +23,7 @@ public class DirectorMovieController {
     }
 
     @GetMapping("/directorsmovies")
-    public List<DirectorMovie> getADirectorsMovies() {
+    public List<DirectorMovie> getDirectorsMovies() {
         return this.directorMovieRepository.findAll();
     }
 
@@ -39,7 +39,7 @@ public class DirectorMovieController {
     }
 
     @PostMapping("/directorsmovies")
-    public DirectorMovie saveDirectorMovie(@RequestBody DirectorMovie directorMovie) {
+    public DirectorMovie insertDirectorMovie(@RequestBody DirectorMovie directorMovie) {
         return this.directorMovieRepository.save(directorMovie);
     }
 }

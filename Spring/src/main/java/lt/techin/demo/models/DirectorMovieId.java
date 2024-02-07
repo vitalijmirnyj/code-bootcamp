@@ -4,6 +4,7 @@ package lt.techin.demo.models;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,10 +14,12 @@ public class DirectorMovieId implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "Director_id")
+
     private Director director;
 
     @ManyToOne
     @JoinColumn(name = "Movie_id")
+
     private Movie movie;
 
     public DirectorMovieId(Director director, Movie movie) {

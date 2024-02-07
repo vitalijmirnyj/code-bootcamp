@@ -26,6 +26,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/directors").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/movies").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/directorsmovies").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/reviews").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/movies/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/movies/{id}").hasRole("ADMIN")

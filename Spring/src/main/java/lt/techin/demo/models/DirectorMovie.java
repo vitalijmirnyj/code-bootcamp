@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class DirectorMovie {
 
     @EmbeddedId
+
     private DirectorMovieId directorMovieId;
 
     private String role;
