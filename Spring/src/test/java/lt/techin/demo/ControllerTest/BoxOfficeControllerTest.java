@@ -1,4 +1,4 @@
-package lt.techin.demo;
+package lt.techin.demo.ControllerTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
