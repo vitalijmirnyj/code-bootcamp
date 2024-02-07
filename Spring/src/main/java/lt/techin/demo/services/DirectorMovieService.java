@@ -1,8 +1,11 @@
 package lt.techin.demo.services;
 
 import lt.techin.demo.models.DirectorMovie;
+import lt.techin.demo.models.DirectorMovieId;
+import lt.techin.demo.models.Movie;
 import lt.techin.demo.models.User;
 import lt.techin.demo.repositories.DirectorMovieRepository;
+import lt.techin.demo.repositories.MovieRepository;
 import lt.techin.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -20,24 +23,25 @@ public class DirectorMovieService {
         this.directorMovieRepository = directorMovieRepository;
     }
 
+
     public List<DirectorMovie> findAllDirectorsMovies() {
         return this.directorMovieRepository.findAll();
     }
 
-    public DirectorMovie findDirectorMovieByDirectorIdAndMovieId(long directorId, long movieId) throws ChangeSetPersister.NotFoundException {
-        return this.directorMovieRepository.findByDirectorIdAndMovieId(directorId, movieId)
-                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+    public DirectorMovie findDirectorMovieById(DirectorMovieId directorMovieId) {
+        return this.directorMovieRepository.findById(directorMovieId).orElseThrow();
     }
 
     public DirectorMovie saveDirectorMovie(DirectorMovie directorMovie) {
         return this.directorMovieRepository.save(directorMovie);
     }
 
-    public void deleteDirectorMovieById(long directorId, long movieId) {
-        this.directorMovieRepository.deleteByDirectorIdAndMovieId(directorId, movieId);
+    public void deleteDirectorMovieById(DirectorMovieId directorMovieId) {
+        this.directorMovieRepository.deleteById(directorMovieId);
     }
 
-    public boolean existsDerictorMovieById(long directorId, long movieId) {
-        return this.directorMovieRepository.existsById(directorId, movieId);
+    public boolean existsById(DirectorMovieId directorMovieId) {
+        return this.directorMovieRepository.existsById(directorMovieId);
     }
+}
 }
