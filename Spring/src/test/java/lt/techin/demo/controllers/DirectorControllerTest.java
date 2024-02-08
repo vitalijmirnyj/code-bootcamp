@@ -71,7 +71,7 @@ public class DirectorControllerTest {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    void insertDirector_whenSaveDirector_thenReturnIt() throws Exception {
+    void insertDirector_whenAdminSaveDirector_thenReturnIt() throws Exception {
         Director director = new Director(1, "Christopher Nolan", LocalDate.of(1970, 07, 30), "British", "Christopher Nolan is a British-American film director, screenwriter, and producer.", "3 Oscars, 6 BAFTA Awards");
         given(this.directorService.saveDirector(any(Director.class))).willReturn(director);
 
