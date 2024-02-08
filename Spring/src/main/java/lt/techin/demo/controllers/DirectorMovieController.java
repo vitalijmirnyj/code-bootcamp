@@ -51,8 +51,14 @@ public class DirectorMovieController {
     }
 
     @PostMapping("/directorsmovies")
-    public DirectorMovie insertDirectorMovie(@RequestBody DirectorMovie directorMovie) {
-        return this.directorMovieService.saveDirectorMovie(directorMovie);
+    public ResponseEntity<DirectorMovie> insertDirectorMovie(@RequestBody DirectorMovie directorMovie) {
+        DirectorMovie insertedDirectorMovie = this.directorMovieService.saveDirectorMovie(directorMovie);
+        if (insertedDirectorMovie != null) {
+            return ResponseEntity.ok(insertedDirectorMovie);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping("/directors/{directorId}/movies/{movieId}")
