@@ -47,7 +47,7 @@ public class DirectorControllerTest {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    void GetDirectors_whenSaveDirectors_thenReturnAll() throws Exception {
+    void GetDirectors_whenAdminSaveDirectors_thenReturnAll() throws Exception {
         given(this.directorService.findAllDirectors()).willReturn(List.of(new Director(1, "Christopher Nolan", LocalDate.of(1970, 07, 30), "British", "Christopher Nolan is a British-American film director, screenwriter, and producer.", "3 Oscars, 6 BAFTA Awards"),
                 new Director(2, "Quentin Tarantino", LocalDate.of(1963, 03, 27), "American", "Quentin Jerome Tarantino is an American film director, screenwriter, producer, and actor.", "2 Oscars, 2 Golden Globes")
         ));
