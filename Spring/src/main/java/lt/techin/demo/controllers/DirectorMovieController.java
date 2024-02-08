@@ -71,7 +71,7 @@ public class DirectorMovieController {
 
             return ResponseEntity.ok(this.directorMovieService.saveDirectorMovie(directorMoviePayLoad));
         }
-        return null;
+        return ResponseEntity.notFound().build();
     }
 
 }
