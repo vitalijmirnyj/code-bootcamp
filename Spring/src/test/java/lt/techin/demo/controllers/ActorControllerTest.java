@@ -150,7 +150,7 @@ public class ActorControllerTest {
         long actorIdToDelete = 1L;
         mockMvc.perform(delete("/actors/{id}", actorIdToDelete))
                 .andExpect(status().isOk());
-        verify(this.actorService).deleteActorById(1L);
+        verify(this.actorService).deleteActorById(actorIdToDelete);
     }
 
     @Test
