@@ -1,29 +1,43 @@
 package lt.techin.demo.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lt.techin.demo.controllers.ActorController;
 import lt.techin.demo.controllers.DirectorController;
 import lt.techin.demo.models.Actor;
 import lt.techin.demo.models.Director;
+import lt.techin.demo.models.Movie;
+import lt.techin.demo.security.SecurityConfig;
 import lt.techin.demo.services.DirectorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = DirectorController.class)
-
+@Import(SecurityConfig.class)
 public class DirectorControllerTest {
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.registerModule(new JavaTimeModule());
+    }
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,7 +47,7 @@ public class DirectorControllerTest {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    void getDirectors_saveDirectors_returnAll() throws Exception {
+    void GetDirectors_whenSaveDirectors_thenReturnAll() throws Exception {
         given(this.directorService.findAllDirectors()).willReturn(List.of(new Director(1, "Christopher Nolan", LocalDate.of(1970, 07, 30), "British", "Christopher Nolan is a British-American film director, screenwriter, and producer.", "3 Oscars, 6 BAFTA Awards"),
                 new Director(2, "Quentin Tarantino", LocalDate.of(1963, 03, 27), "American", "Quentin Jerome Tarantino is an American film director, screenwriter, producer, and actor.", "2 Oscars, 2 Golden Globes")
         ));
@@ -53,5 +67,25 @@ public class DirectorControllerTest {
 
 
         verify(this.directorService).findAllDirectors();
+    }
+
+    @Test
+    @WithMockUser(roles = {"ADMIN"})
+    void insertDirector_whenSaveDirector_thenReturnIt() throws Exception {
+        Director director = new Director(1, "Christopher Nolan", LocalDate.of(1970, 07, 30), "British", "Christopher Nolan is a British-American film director, screenwriter, and producer.", "3 Oscars, 6 BAFTA Awards");
+        given(this.directorService.saveDirector(any(Director.class))).willReturn(director);
+
+        mockMvc.perform(post("/directors")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(director)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.directorName").value("Christopher Nolan"))
+                .andExpect(jsonPath("$.dateOfBirth").value("1970-07-30"))
+                .andExpect(jsonPath("$.nationality").value("British"))
+                .andExpect(jsonPath("$.biography").value("Christopher Nolan is a British-American film director, screenwriter, and producer."))
+                .andExpect(jsonPath("$.awards").value("3 Oscars, 6 BAFTA Awards"));
+
+        verify(this.directorService).saveDirector(any(Director.class));
     }
 }
