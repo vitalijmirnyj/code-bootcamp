@@ -25,18 +25,28 @@ public class DirectorMovieController {
     }
 
     @GetMapping("/directorsmovies")
-    public List<DirectorMovie> getDirectorsMovies() {
-        return this.directorMovieService.findAllDirectorsMovies();
+    public ResponseEntity<List<DirectorMovie>> getDirectorsMovies() {
+        List<DirectorMovie> directorMovies = this.directorMovieService.findAllDirectorsMovies();
+        if (!directorMovies.isEmpty()) {
+            return ResponseEntity.ok(directorMovies);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
+
     @GetMapping("/directors/{directorId}/movies/{movieId}")
-    public DirectorMovie getDirectorMovie(@PathVariable("directorId") long directorId,
-                                          @PathVariable("movieId") long movieId) {
+    public ResponseEntity<DirectorMovie> getDirectorMovie(@PathVariable("directorId") long directorId,
+                                                          @PathVariable("movieId") long movieId) {
         Director director = this.directorService.findDirectorById(directorId);
         Movie movie = this.movieService.findMovieById(movieId);
         DirectorMovieId directorMovieId = new DirectorMovieId(director, movie);
-
-        return this.directorMovieService.findDirectorMovieById(directorMovieId);
+        DirectorMovie directorMovie = this.directorMovieService.findDirectorMovieById(directorMovieId);
+        if (directorMovie != null) {
+            return ResponseEntity.ok(directorMovie);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
 
     }
 
