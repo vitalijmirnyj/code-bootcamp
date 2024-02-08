@@ -22,14 +22,17 @@ public class DirectorMovieId implements Serializable {
 
     private Movie movie;
 
+
     public DirectorMovieId(Director director, Movie movie) {
         this.director = director;
         this.movie = movie;
+
     }
 
     public Director getDirector() {
         return director;
     }
+
 
     public void setDirector(Director director) {
         this.director = director;

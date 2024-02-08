@@ -51,11 +51,27 @@ public class DirectorMovieController {
         Director director = this.directorService.findDirectorById(directorId);
         Movie movie = this.movieService.findMovieById(movieId);
         DirectorMovieId directorMovieId = new DirectorMovieId(director, movie);
-        if (this.directorMovieService.existsById(directorMovieId)) {
+        if (this.directorMovieService.existsDirectorMovieById(directorMovieId)) {
             this.directorMovieService.deleteDirectorMovieById(directorMovieId);
             return ResponseEntity.ok().build();
         }
         this.directorMovieService.deleteDirectorMovieById(directorMovieId);
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/directors/{directorId}/movies/{movieId}")
+    public ResponseEntity<DirectorMovie> updateDirectorMovie(@PathVariable("directorId") long directorId,
+                                                             @PathVariable("movieId") long movieId,
+                                                             @RequestBody DirectorMovie directorMoviePayLoad) {
+        Director directorFromDb = this.directorService.findDirectorById(directorId);
+        Movie movieFromDb = this.movieService.findMovieById(movieId);
+        DirectorMovieId directorMovieIdPayLoad = new DirectorMovieId(directorFromDb, movieFromDb);
+        if (this.directorMovieService.existsDirectorMovieById(directorMovieIdPayLoad)) {
+            this.directorMovieService.deleteDirectorMovieById(directorMovieIdPayLoad);
+
+            return ResponseEntity.ok(this.directorMovieService.saveDirectorMovie(directorMoviePayLoad));
+        }
+        return null;
+    }
+
 }

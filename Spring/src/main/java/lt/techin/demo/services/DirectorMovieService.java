@@ -40,7 +40,7 @@ public class DirectorMovieService {
         this.directorMovieRepository.deleteById(directorMovieId);
     }
 
-    public boolean existsById(DirectorMovieId directorMovieId) {
+    public boolean existsDirectorMovieById(DirectorMovieId directorMovieId) {
         return this.directorMovieRepository.existsById(directorMovieId);
     }
 
