@@ -25,3 +25,17 @@ function valueOfY(x) {
   y = Math.pow(16, 4) + 2 * x;
   console.log(y);
 }
+
+//3.
+let number1;
+let number2;
+
+function findBiggerOfTwoNumbers(number1, number2) {
+  if (number1 > number2 && number1 != number2) {
+    return number1;
+  } else {
+    return number2;
+  }
+}
+
+//4.
