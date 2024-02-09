@@ -53,7 +53,8 @@ function findBiggerOfTwoNumbers(number1, number2) {
 
 //Using Math max
 function findBiggerOfTwo(number1, number2) {
-  let;
+  let biggerNumber = Math.max(number1, number2);
+  return biggerNumber;
 }
 
 //5.
