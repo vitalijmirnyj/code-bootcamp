@@ -84,3 +84,29 @@ function weatherConditions(condition) {
       break;
   }
 }
+
+//8.
+function timeOfYear(monthNumber) {
+  switch (monthNumber) {
+    case 1:
+    case 2:
+    case 12:
+      console.log("Ziema");
+      break;
+    case 3:
+    case 4:
+    case 5:
+      console.log("Pavasaris");
+      break;
+    case 6:
+    case 7:
+    case 8:
+      console.log("Vasara");
+      break;
+    case 9:
+    case 10:
+    case 11:
+      console.log("Ruduo");
+      break;
+  }
+}
