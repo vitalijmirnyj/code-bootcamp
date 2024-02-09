@@ -132,3 +132,15 @@ function allNumbersFrom0ToHundred() {
     }
   }
 }
+
+//11.
+function functionWithinInterval() {
+  for (let i = -5; i <= 5; i++) {
+    if (i != 0) {
+      value = 1 / i;
+    }
+    console.log(value);
+  }
+}
+
+//12.
