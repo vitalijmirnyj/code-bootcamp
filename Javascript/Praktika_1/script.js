@@ -63,3 +63,24 @@ function BodyIndex(height, weight) {
     console.log("Nutukimas");
   }
 }
+
+//7.
+function weatherConditions(condition) {
+  switch (condition) {
+    case 1:
+      console.log("Sauleta");
+      break;
+    case 2:
+      console.log("Lietinga");
+      break;
+    case 3:
+      console.log("Lietinga");
+      break;
+    case 4:
+      console.log("Sniegas");
+      break;
+    default:
+      console.log("Neaiskus oras");
+      break;
+  }
+}
