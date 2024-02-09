@@ -51,6 +51,11 @@ function findBiggerOfTwoNumbers(number1, number2) {
   console.log(biggerNumber);
 }
 
+//Using Math max
+function findBiggerOfTwo(number1, number2) {
+  let;
+}
+
 //5.
 function grade(points) {
   if (points <= 29) {
@@ -65,6 +70,31 @@ function grade(points) {
     console.log("Your Grade is 4");
   } else {
     console.log("Your Grade is 5");
+  }
+}
+
+//swtich with condition method
+
+function grading(points) {
+  switch (true) {
+    case points < 29:
+      console.log("Failed");
+      break;
+    case points > 29 && points <= 34:
+      console.log("Grade 1");
+      break;
+    case points > 34 && points <= 39:
+      console.log("Grade 2");
+      break;
+    case points > 39 && points <= 44:
+      console.log("Grade 3");
+      break;
+    case points > 44 && points <= 49:
+      console.log("Grade 4");
+      break;
+    case points > 49:
+      console.log("Grade 5");
+      break;
   }
 }
 
