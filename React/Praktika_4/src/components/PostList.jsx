@@ -1,5 +1,6 @@
 import PostContent from "./PostContent";
-
+import { v4 as uuidv4 } from "uuid";
+uuidv4();
 function PostList() {
   let posts = [
     {
@@ -22,6 +23,7 @@ function PostList() {
   let list = posts.map((post) => {
     return (
       <PostContent
+        key={uuidv4()}
         title={post.title}
         content={post.content}
         img={post.img}
