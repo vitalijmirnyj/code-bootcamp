@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Card() {
   const [btnPressed, setBtnPressed] = useState(false);
   function changeBtnPressed() {
-    setBtnPressed(!btnPressed);
+    setBtnPressed(true);
   }
 
   return (
