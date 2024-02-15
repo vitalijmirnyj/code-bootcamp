@@ -1,8 +1,8 @@
-function PostContent(props) {
+function PostContent({ h3text, ptext }) {
   return (
     <div>
-      <h3>{props.h1text}</h3>
-      <p>{props.ptext}</p>
+      <h3>{h3text}</h3>
+      <p>{ptext}</p>
     </div>
   );
 }

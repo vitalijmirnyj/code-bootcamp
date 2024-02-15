@@ -29,13 +29,13 @@ function App() {
       <div className="row">
         <div className="col-6">
           <PostContent
-            h1text="Hello world"
+            h3text="Hello world"
             ptext="Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet expedita animi illum ducimus beatae optio, totam sapiente exercitationem, aut autem voluptates aperiam quam in facere quis rem iusto sequi at!"
           />
         </div>
         <div className="col-6">
           <PostContent
-            h1text="Hello world"
+            h3text="Hello world"
             ptext="Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet expedita animi illum ducimus beatae optio, totam sapiente exercitationem, aut autem voluptates aperiam quam in facere quis rem iusto sequi at!"
           />
         </div>
