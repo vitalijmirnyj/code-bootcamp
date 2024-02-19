@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "HTML",
+    "content": "Aš mokausi HTML",
+    "img": "https://c4.wallpaperflare.com/wallpaper/942/856/7/coding-hacking-man-binary-wallpaper-preview.jpg",
+    "status": false
+  },
+  {
+    "id": 2,
+    "title": "CSS",
+    "content": "Aš mokausi CSS",
+    "img": "https://c4.wallpaperflare.com/wallpaper/942/856/7/coding-hacking-man-binary-wallpaper-preview.jpg",
+    "status": false
+  },
+  {
+    "id": 3,
+    "title": "JavaScript",
+    "content": "Aš mokausi JavaScript",
+    "img": "https://c4.wallpaperflare.com/wallpaper/942/856/7/coding-hacking-man-binary-wallpaper-preview.jpg",
+    "status": false
+  }
+]
