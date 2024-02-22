@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Movies from "./components/Movies";
 import Actors from "./components/Actors";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route
           path="/actors"
           element={<Actors />}
+        />
+        <Route
+          path="*"
+          element={<ErrorPage />}
         />
       </Routes>
     </>
