@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Movies from "./components/Movies";
 import Actors from "./components/Actors";
 
@@ -9,10 +9,10 @@ function App() {
       <div>
         <ul>
           <li>
-            <a href="/movies">Movies</a>
+            <NavLink to="/movies">Movies</NavLink>
           </li>
           <li>
-            <a href="/actors">Actors</a>
+            <NavLink to="/actors">Actors</NavLink>
           </li>
         </ul>
       </div>
