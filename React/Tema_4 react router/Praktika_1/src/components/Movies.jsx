@@ -36,7 +36,18 @@ function Movies() {
 
     fetchData();
   };
+  const addMovie = async (id) => {
+    const headers = new Headers();
+    headers.set(
+      "Authorization",
+      "Basic " + btoa("Marius123465" + ":" + "123456544")
+    );
 
+    await fetch(`http://localhost:8080/movies/${id}`, {
+      method: "POST",
+      headers: headers,
+    });
+  };
   return (
     <div className="container container-centered">
       <table class="table border border-primary">

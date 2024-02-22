@@ -7,41 +7,44 @@ import Actor from "./components/Actor";
 
 function App() {
   return (
-    <>
-      <div className="container">
-        <ul>
-          <li>
-            <NavLink to="/movies">Movies</NavLink>
-          </li>
-          <li>
-            <NavLink to="/actors">Actors</NavLink>
-          </li>
-        </ul>
-      </div>
-
-      <Routes>
-        <Route
-          path="/movies"
-          element={<Movies />}
-        />
-        <Route
-          path="/actors"
-          element={<Actors />}
-        />
-        <Route
-          path="/movies/:id"
-          element={<Movie />}
-        />
-        <Route
-          path="/actors/:id"
-          element={<Actor />}
-        />
-        <Route
-          path="*"
-          element={<ErrorPage />}
-        />
-      </Routes>
-    </>
+    <div className="container">
+      <header>
+        <div>
+          <ul>
+            <li>
+              <NavLink to="/movies">Movies</NavLink>
+            </li>
+            <li>
+              <NavLink to="/actors">Actors</NavLink>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <main>
+        <Routes>
+          <Route
+            path="/movies"
+            element={<Movies />}
+          />
+          <Route
+            path="/actors"
+            element={<Actors />}
+          />
+          <Route
+            path="/movies/:id"
+            element={<Movie />}
+          />
+          <Route
+            path="/actors/:id"
+            element={<Actor />}
+          />
+          <Route
+            path="*"
+            element={<ErrorPage />}
+          />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
