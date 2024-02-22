@@ -23,6 +23,25 @@ function Actors() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const deleteActor = async (id) => {
+    const headers = new Headers();
+    headers.set(
+      "Authorization",
+      "Basic " + btoa("Marius123465" + ":" + "123456544")
+    );
+
+    await fetch(`http://localhost:8080/actors/${id}`, {
+      method: "DELETE",
+      headers: headers,
+    });
+
+    fetchData();
+  };
+
   return (
     <div className="container container-centered">
       <table class="table border border-primary">
@@ -64,6 +83,10 @@ function Actors() {
             >
               Nationality
             </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            ></th>
           </tr>
         </thead>
         <tbody>
@@ -75,6 +98,9 @@ function Actors() {
               <td>{item.gender}</td>
               <td>{item.age}</td>
               <td>{item.nationality}</td>
+              <td>
+                <button onClick={() => deleteActor(item.id)}>DELETE</button>
+              </td>
             </tr>
           ))}
         </tbody>

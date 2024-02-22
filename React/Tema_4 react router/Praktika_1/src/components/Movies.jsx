@@ -22,6 +22,21 @@ function Movies() {
     fetchData();
   }, []);
 
+  const deleteMovie = async (id) => {
+    const headers = new Headers();
+    headers.set(
+      "Authorization",
+      "Basic " + btoa("Marius123465" + ":" + "123456544")
+    );
+
+    await fetch(`http://localhost:8080/movies/${id}`, {
+      method: "DELETE",
+      headers: headers,
+    });
+
+    fetchData();
+  };
+
   return (
     <div className="container container-centered">
       <table class="table border border-primary">
@@ -57,6 +72,10 @@ function Movies() {
             >
               Length of minutes
             </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            ></th>
           </tr>
         </thead>
         <tbody>
@@ -67,6 +86,9 @@ function Movies() {
               <td>{item.director}</td>
               <td>{item.yearRelease}</td>
               <td>{item.lengthMinutes}</td>
+              <td>
+                <button onClick={() => deleteMovie(item.id)}>DELETE</button>
+              </td>
             </tr>
           ))}
         </tbody>
