@@ -5,7 +5,7 @@ import Actors from "./components/Actors";
 function App() {
   return (
     <>
-      <div>
+      <div className="container">
         <ul>
           <li>
             <NavLink to="/movies">Movies</NavLink>
