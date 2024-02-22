@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 function Actors() {
   const [data, setData] = useState([]);
@@ -23,10 +24,7 @@ function Actors() {
   }, []);
 
   return (
-    <div
-      className="container"
-      style={{ borderRadius: "20px", overflow: "hidden" }}
-    >
+    <div className="container container-centered">
       <table class="table border border-primary">
         <thead class="thead-dark">
           <tr>

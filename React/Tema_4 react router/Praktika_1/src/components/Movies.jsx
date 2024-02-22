@@ -23,10 +23,7 @@ function Movies() {
   }, []);
 
   return (
-    <div
-      className="container"
-      style={{ borderRadius: "20px", overflow: "hidden" }}
-    >
+    <div className="container container-centered">
       <table class="table border border-primary">
         <thead class="thead-dark">
           <tr>
