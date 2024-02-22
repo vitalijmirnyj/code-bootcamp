@@ -99,7 +99,12 @@ function Actors() {
               <td>{item.age}</td>
               <td>{item.nationality}</td>
               <td>
-                <button onClick={() => deleteActor(item.id)}>DELETE</button>
+                <button
+                  onClick={() => deleteActor(item.id)}
+                  class="btn btn-primary btn-lg btn-block"
+                >
+                  DELETE
+                </button>
               </td>
             </tr>
           ))}

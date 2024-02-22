@@ -87,7 +87,12 @@ function Movies() {
               <td>{item.yearRelease}</td>
               <td>{item.lengthMinutes}</td>
               <td>
-                <button onClick={() => deleteMovie(item.id)}>DELETE</button>
+                <button
+                  onClick={() => deleteMovie(item.id)}
+                  class="btn btn-primary btn-lg btn-block"
+                >
+                  DELETE
+                </button>
               </td>
             </tr>
           ))}
