@@ -5,7 +5,7 @@ import Actors from "./components/Actors";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <div>
         <ul>
           <li>
@@ -27,7 +27,7 @@ function App() {
           element={<Actors />}
         />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
