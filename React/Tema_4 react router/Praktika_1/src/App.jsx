@@ -3,6 +3,7 @@ import Movies from "./components/Movies";
 import Actors from "./components/Actors";
 import ErrorPage from "./components/ErrorPage";
 import Movie from "./components/Movie";
+import Actor from "./components/Actor";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         />
         <Route
           path="/actors/:id"
-          element={<Actors />}
+          element={<Actor />}
         />
         <Route
           path="*"
