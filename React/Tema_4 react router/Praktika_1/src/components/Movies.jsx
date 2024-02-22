@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Movies() {
   const [data, setData] = useState([]);
@@ -23,12 +24,53 @@ function Movies() {
 
   return (
     <div>
-      {data.map((item) => (
-        <div key={item.id}>
-          <p>{item.id}</p>
-          <p>{item.title}</p>
-        </div>
-      ))}
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Id
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Title
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Director
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Year of release
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Length of minutes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.title}</td>
+              <td>{item.director}</td>
+              <td>{item.yearRelease}</td>
+              <td>{item.lengthMinutes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <br></br>
     </div>
   );

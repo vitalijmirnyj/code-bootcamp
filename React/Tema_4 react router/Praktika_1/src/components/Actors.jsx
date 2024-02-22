@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Actors() {
   const [data, setData] = useState([]);
@@ -23,13 +24,61 @@ function Actors() {
 
   return (
     <div>
-      {data.map((item) => (
-        <div key={item.id}>
-          <p>{item.id}</p>
-          <p>{item.name}</p>
-          <p>{item.surname}</p>
-        </div>
-      ))}
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Id
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Name
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Surname
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Gender
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Age
+            </th>
+            <th
+              scope="col"
+              className="bg-primary"
+            >
+              Nationality
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.surname}</td>
+              <td>{item.gender}</td>
+              <td>{item.age}</td>
+              <td>{item.nationality}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br></br>
     </div>
   );
 }
