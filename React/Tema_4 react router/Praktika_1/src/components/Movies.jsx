@@ -29,7 +29,7 @@ function Movies() {
           <p>{item.title}</p>
         </div>
       ))}
-      <p></p>
+      <br></br>
     </div>
   );
 }
