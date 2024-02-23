@@ -44,8 +44,8 @@ function Actors() {
 
   return (
     <div className="container container-centered">
-      <table class="table border border-primary">
-        <thead class="thead-dark">
+      <table className="table border border-primary">
+        <thead className="thead-dark">
           <tr>
             <th
               scope="col"
@@ -101,7 +101,7 @@ function Actors() {
               <td>
                 <button
                   onClick={() => deleteActor(item.id)}
-                  class="btn btn-primary btn-lg btn-block"
+                  className="btn btn-primary btn-lg btn-block"
                 >
                   DELETE
                 </button>
